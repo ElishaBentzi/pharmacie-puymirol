@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Pharmacie Puymirol : Votre santé, notre priorité depuis 1945";
+const description = "Besoin d'une téléconsultation médicale rapide ? La Pharmacie Puymirol vous met en relation avec des médecins via Medadom.";
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  
+  <main>
+    <!-- Hero Principal -->
+    <section class="relative bg-primary-700 text-white py-20 overflow-hidden">
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl" data-aos="fade-right">
+          <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">
+            Pharmacie Puymirol
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-primary-100">
+            À votre service depuis 1945. Prospérité, Santé et Union.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/teleconsultation" class="bg-white text-primary-700 hover:bg-primary-50 px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105">
+              Téléconsultation
+            </a>
+            <a href="/materiel-medical" class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-3 rounded-full font-bold transition-all">
+              Matériel Médical
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="absolute right-0 top-0 w-1/2 h-full opacity-20 hidden lg:block">
+         <img src="/images/2019/07/home-pharmacist-opt.png" alt="Pharmacien" class="object-cover h-full w-full" />
+      </div>
+    </section>
+
+    <!-- Sección Servicios Destacados -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <!-- Téléconsultation -->
+          <div class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl transition-all hover:shadow-xl" data-aos="fade-up">
+            <div class="mb-4 overflow-hidden rounded-xl h-48">
+              <img src="/images/2024/04/medadom-450.jpeg" alt="Medadom" class="w-full h-full object-cover transition-transform group-hover:scale-110" />
+            </div>
+            <h3 class="text-xl font-bold mb-3 dark:text-white">Téléconsultation</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+              Consultez un médecin en temps réel avec Medadom, sans attente traditionnelle.
+            </p>
+            <a href="/teleconsultation" class="text-primary-600 font-semibold inline-flex items-center hover:gap-2 transition-all">
+              En savoir plus <span class="ml-1">→</span>
+            </a>
+          </div>
+
+          <!-- Diététicienne -->
+          <div class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl transition-all hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
+            <div class="mb-4 overflow-hidden rounded-xl h-48">
+              <img src="/images/2024/04/nutritionist-450.jpg" alt="Diététicienne" class="w-full h-full object-cover transition-transform group-hover:scale-110" />
+            </div>
+            <h3 class="text-xl font-bold mb-3 dark:text-white">Diététicienne</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+              Une bonne nutrition est votre première médecine. Consultations disponibles sur place.
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqkPKzKco8RVY3OzAxKwaj93_saJgS4d52c4f135tBQzlO4Q/viewform?embedded=true" target="_blank" class="text-primary-600 font-semibold inline-flex items-center hover:gap-2 transition-all">
+              Prendre RDV <span class="ml-1">→</span>
+            </a>
+          </div>
+
+          <!-- Alimentation Animale -->
+          <div class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl transition-all hover:shadow-xl" data-aos="fade-up" data-aos-delay="200">
+            <div class="mb-4 overflow-hidden rounded-xl h-48">
+              <img src="/images/2024/04/lapsa-450.jpg" alt="Lapsa" class="w-full h-full object-cover transition-transform group-hover:scale-110" />
+            </div>
+            <h3 class="text-xl font-bold mb-3 dark:text-white">Alimentation Chien/Chat</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+              Ingrédients de haute qualité, viande fraîche. Fabriqué en France pour vos compagnons.
+            </p>
+            <span class="text-primary-600 font-semibold">Qualité Premium</span>
+          </div>
+
+          <!-- Histoire -->
+          <div class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl transition-all hover:shadow-xl" data-aos="fade-up" data-aos-delay="300">
+            <div class="mb-4 overflow-hidden rounded-xl h-48">
+              <img src="/images/2024/04/fachada-vieja-450.jpg" alt="Fachada" class="w-full h-full object-cover transition-transform group-hover:scale-110" />
+            </div>
+            <h3 class="text-xl font-bold mb-3 dark:text-white">Depuis 1945</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+              Plus de 75 ans à prendre soin de la santé des citoyens de la région.
+            </p>
+            <span class="text-primary-600 font-semibold">Votre Proximité</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Matériel Médical -->
+    <section class="py-16 bg-gray-100 dark:bg-gray-800">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2" data-aos="fade-right">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 dark:text-white">Matériels et Prestations à Domicile</h2>
+          <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+            Location et vente en partenariat avec les professionnels de santé, idéal pour les personnes à mobilité réduite ou hospitalisées à domicile.
+          </p>
+          <a href="/materiel-medical" class="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg hover:shadow-lg transition-all">
+            Explorer le catalogue
+          </a>
+        </div>
+        <div class="md:w-1/2" data-aos="zoom-in">
+          <img src="/images/2019/07/home-family-opt.png" alt="Famille Santé" class="rounded-2xl shadow-2xl" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Calendriers et Infos -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center p-6 border border-gray-100 dark:border-gray-700 rounded-xl">
+            <h3 class="text-lg font-bold mb-2">Calendriers Polliniques</h3>
+            <p class="text-sm text-gray-500 mb-4">Information en temps réel sur la propagation du pollen.</p>
+            <a href="https://www.stallergenesgreer.fr/calendriers-polliniques-regionaux" target="_blank" class="text-primary-600 text-sm font-medium">Consulter le calendrier</a>
+          </div>
+          <div class="text-center p-6 border border-gray-100 dark:border-gray-700 rounded-xl">
+            <h3 class="text-lg font-bold mb-2">Pharmacie de Garde</h3>
+            <p class="text-sm text-gray-500 mb-4">Trouvez la pharmacie ouverte la plus proche de chez vous.</p>
+            <a href="http://www.3237.fr" target="_blank" class="text-primary-600 text-sm font-medium">Appeler le 3237</a>
+          </div>
+          <div class="text-center p-6 border border-gray-100 dark:border-gray-700 rounded-xl">
+            <h3 class="text-lg font-bold mb-2">Vaccinations</h3>
+            <p class="text-sm text-gray-500 mb-4">Faites le point sur vos recommandations vaccinales.</p>
+            <a href="https://vaccination-info-service.fr" target="_blank" class="text-primary-600 text-sm font-medium">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

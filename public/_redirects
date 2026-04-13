@@ -1,0 +1,17 @@
+# Redirects 301 - WordPress → Astro
+# Mantener URLs antiguas para SEO
+
+# Páginas principales
+/accueil    /    301
+/teleconsultation/    /teleconsultation    301
+/materiel-medical/    /materiel-medical    301
+/orthopedie-contention/    /orthopedie-contention    301
+
+# WordPress default routes
+/wp-content/*    /    404
+/wp-admin    /    404
+/wp-login.php    /    404
+
+# Feed
+/feed    /    301
+/rss    /    301

@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Matériel médical pour votre autonomie | Pharmacie Puymirol";
+const description = "Découvrez notre large sélection de produits de santé (Alcura, Revitive) pour améliorer votre bien-être au quotidien. Livraison rapide.";
+---
+
+<Layout title={title} description={description}>
+  <Header />
+  
+  <main class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto mb-16 text-center" data-aos="fade-down">
+        <h1 class="text-4xl md:text-5xl font-bold font-heading mb-6 text-primary-700 dark:text-primary-400">
+          Matériel Médical
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          Découvrez notre sélection de produits de santé conçus pour améliorer votre bien-être au quotidien. 
+          Lits de qualité supérieure, béquilles, marcheurs, fauteuils roulants.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-16 items-start mb-24">
+        <div class="prose dark:prose-invert max-w-none" data-aos="fade-right">
+          <h2 class="text-2xl font-bold">Partenariat Alcura</h2>
+          <p>Consulter notre catalogue interactif pour découvrir l'ensemble des dispositifs disponibles en location et vente.</p>
+          <div class="aspect-[9/7] w-full border rounded-2xl overflow-hidden shadow-2xl bg-white">
+            <iframe src="https://catalogue.alcura-health.fr/1090907/#page=102" class="w-full h-full" allow="fullscreen"></iframe>
+          </div>
+        </div>
+
+        <div data-aos="fade-left">
+          <h2 class="text-2xl font-bold mb-6">Solution REVITIVE</h2>
+          <div class="bg-teal-50 dark:bg-teal-900/10 p-8 rounded-3xl border border-teal-100 dark:border-teal-800">
+            <img src="/images/2019/12/revitive-medic-pharma-1.jpg" alt="Revitive Medic Pharma" class="rounded-xl mb-6 shadow-lg" />
+            <h3 class="text-xl font-bold mb-4">REVITIVE MEDIC PHARMA</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+              Soulage les sensations de jambes lourdes, pieds et chevilles enflés. Améliore cliniquement la circulation sanguine.
+            </p>
+            <ul class="text-sm space-y-2 mb-8">
+              <li>⚡ ÉlectroStimulation Musculaire</li>
+              <li>🔄 Système IsoRocker®</li>
+              <li>🌊 Ondes à Impulsions Larges</li>
+            </ul>
+            <a href="https://youtu.be/flB7i8rE5SA" target="_blank" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-medium hover:bg-teal-700 transition-colors italic">
+              Regarder la vidéo →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
