@@ -21,8 +21,9 @@ const { title, description = 'Pharmacie Puymirol - Votre pharmacie de proximité
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     
-    <!-- AOS CSS -->
+    <!-- AOS CSS & JS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <title>{title} | Pharmacie Puymirol</title>
   </head>
@@ -30,18 +31,21 @@ const { title, description = 'Pharmacie Puymirol - Votre pharmacie de proximité
     <slot />
     
     <!-- AOS Init -->
-    <script client:load>
-      import AOS from 'aos';
-      AOS.init({
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 50,
-        duration: 800
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof AOS !== 'undefined') {
+          AOS.init({
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50,
+            duration: 800
+          });
+        }
       });
     </script>
     
     <!-- Dark mode toggle logic -->
-    <script client:load>
+    <script>
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
