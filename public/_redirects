@@ -1,16 +1,20 @@
-# Redirects 301 - WordPress → Astro
-# Solo redirigir URLs antiguas de WordPress que ya no existen
+# WordPress → Astro 301 Redirects
+# Generated for pharmacie-puymirol.fr migration
 
-# Páginas WordPress antiguas
+# Old WordPress pages
 /accueil    /    301
-/home-new    /    301
 /home    /    301
+/teleconsultation-medadom    /teleconsultation    301
+/teleconsultation-medecin    /teleconsultation    301
+/materiel-medical-location    /materiel-medical    301
+/materiel-medical-vente    /materiel-medical    301
+/orthopedie    /orthopedie-contention    301
+/contention    /orthopedie-contention    301
+/orthopedie-contention    /orthopedie-contention    301
 
-# WordPress default routes
-/wp-content/*    /    404
-/wp-admin    /    404
-/wp-login.php    /    404
-
-# Feed
+# Old WordPress feeds
 /feed    /    301
-/rss    /    301
+/feed/    /    301
+
+# Common WordPress paths
+/wp-content/uploads/*    /images/:splat    301

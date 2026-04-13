@@ -1,61 +1,83 @@
 ---
+import { pharmacyData } from '../data/store';
+
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  ogType?: string;
+  canonicalUrl?: string;
+  noIndex?: boolean;
 }
 
-const { title, description = 'Pharmacie Puymirol - Votre pharmacie de proximité à Puymirol' } = Astro.props;
+const {
+  title,
+  description = `${pharmacyData.name} - Votre pharmacie de proximité à ${pharmacyData.contact.city} depuis ${pharmacyData.since}`,
+  ogImage = '/images/2024/04/fachada-vieja-450.jpg',
+  ogType = 'website',
+  canonicalUrl = Astro.url.href,
+  noIndex = false
+} = Astro.props;
+
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${pharmacyData.siteUrl}${ogImage}`;
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    
+
+    <!-- SEO Primary -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow'} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={pharmacyData.name} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    
-    <title>{title} | Pharmacie Puymirol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Dark Mode (prevent flash) -->
+    <script is:inline>
+      (function() {
+        var theme = localStorage.getItem('theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      })();
+    </script>
   </head>
-  <body class="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans antialiased">
+  <body class="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans antialiased transition-colors duration-300">
     <slot />
-    
-    <!-- AOS Init - Sin atributos para que Astro lo procese como módulo -->
+
+    <!-- AOS -->
     <script>
       import AOS from 'aos';
       import 'aos/dist/aos.css';
-      
-      AOS.init({
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 50,
-        duration: 800
-      });
-    </script>
-    
-    <!-- Dark mode - Sin atributos para que Astro lo procese como módulo -->
-    <script>
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
-        }
-        return 'light';
-      })();
-      
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+      AOS.init({ easing: 'ease-out-cubic', once: true, offset: 50, duration: 800 });
     </script>
   </body>
 </html>

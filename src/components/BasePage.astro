@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import SchemaMarkup from './SchemaMarkup.astro';
+import SkipLink from './SkipLink.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: string;
+  canonicalUrl?: string;
+  noIndex?: boolean;
+}
+
+const props = Astro.props;
+---
+
+<Layout {...props}>
+  <SkipLink />
+  <SchemaMarkup />
+  <Header />
+  <main id="main-content" class="flex-1">
+    <slot />
+  </main>
+  <Footer />
+</Layout>

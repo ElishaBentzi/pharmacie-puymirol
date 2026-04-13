@@ -1,0 +1,50 @@
+---
+import { pharmacyData } from '../data/store';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Pharmacy",
+      "@id": `${pharmacyData.siteUrl}/#pharmacy`,
+      "name": pharmacyData.name,
+      "image": `${pharmacyData.siteUrl}/images/2024/04/fachada-vieja-450.jpg`,
+      "url": pharmacyData.siteUrl,
+      "telephone": pharmacyData.contact.phone,
+      "email": pharmacyData.contact.email,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": pharmacyData.contact.address,
+        "addressLocality": pharmacyData.contact.city,
+        "postalCode": pharmacyData.contact.zipCode,
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": pharmacyData.coordinates.lat,
+        "longitude": pharmacyData.coordinates.lng
+      },
+      "openingHoursSpecification": pharmacyData.hours
+        .filter(h => !h.closed)
+        .map(h => ({
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": h.day,
+          "opens": h.opens,
+          "closes": h.closes
+        })),
+      "priceRange": "€€",
+      "description": `${pharmacyData.name} - ${pharmacyData.slogan}. Votre pharmacie de proximité à ${pharmacyData.contact.city} depuis ${pharmacyData.since}.`
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${pharmacyData.siteUrl}/#website`,
+      "url": pharmacyData.siteUrl,
+      "name": pharmacyData.name,
+      "publisher": { "@id": `${pharmacyData.siteUrl}/#pharmacy` },
+      "inLanguage": "fr-FR"
+    }
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

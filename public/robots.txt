@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pharmacie-puymirol.fr/sitemap-index.xml
+
+# Block WordPress admin paths (no longer exist)
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
