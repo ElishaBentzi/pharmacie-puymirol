@@ -1,11 +1,10 @@
 # Redirects 301 - WordPress → Astro
-# Mantener URLs antiguas para SEO
+# Solo redirigir URLs antiguas de WordPress que ya no existen
 
-# Páginas principales
+# Páginas WordPress antiguas
 /accueil    /    301
-/teleconsultation/    /teleconsultation    301
-/materiel-medical/    /materiel-medical    301
-/orthopedie-contention/    /orthopedie-contention    301
+/home-new    /    301
+/home    /    301
 
 # WordPress default routes
 /wp-content/*    /    404
