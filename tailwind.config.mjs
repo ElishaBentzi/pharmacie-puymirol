@@ -5,8 +5,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Colores extraídos del sitio original (verde/teal)
-        primary: {
+        // Azul Principal (del logo original)
+        pharmacy: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
+        },
+        // Verde Secundario (del logo original)
+        health: {
           50: '#f0fdf4',
           100: '#dcfce7',
           200: '#bbf7d0',
@@ -18,24 +32,32 @@ export default {
           800: '#166534',
           900: '#14532d',
         },
-        teal: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#134e4a',
-        }
+        // Legacy primary (mantener compatibilidad)
+        primary: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         heading: ['Poppins', 'Inter', 'sans-serif'],
+      },
+      backgroundImage: {
+        'pharmacy-gradient': 'linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #22c55e 100%)',
+      },
+      boxShadow: {
+        'pharmacy': '0 10px 40px -10px rgba(30, 64, 175, 0.3)',
+        'health': '0 10px 40px -10px rgba(34, 197, 94, 0.3)',
       },
     },
   },
   plugins: [],
-}
+};
