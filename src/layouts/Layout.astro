@@ -21,30 +21,25 @@ const { title, description = 'Pharmacie Puymirol - Votre pharmacie de proximité
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     
-    <!-- AOS CSS & JS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <title>{title} | Pharmacie Puymirol</title>
   </head>
   <body class="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans antialiased">
     <slot />
     
-    <!-- AOS Init -->
+    <!-- AOS Init - Sin atributos para que Astro lo procese como módulo -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        if (typeof AOS !== 'undefined') {
-          AOS.init({
-            easing: 'ease-out-cubic',
-            once: true,
-            offset: 50,
-            duration: 800
-          });
-        }
+      import AOS from 'aos';
+      import 'aos/dist/aos.css';
+      
+      AOS.init({
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 50,
+        duration: 800
       });
     </script>
     
-    <!-- Dark mode toggle logic -->
+    <!-- Dark mode - Sin atributos para que Astro lo procese como módulo -->
     <script>
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {

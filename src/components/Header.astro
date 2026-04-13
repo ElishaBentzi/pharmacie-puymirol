@@ -92,19 +92,17 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
-  // Mobile menu toggle
-  var mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  var mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
   
-  mobileMenuBtn?.addEventListener('click', function() {
+  mobileMenuBtn?.addEventListener('click', () => {
     mobileMenu?.classList.toggle('hidden');
   });
   
-  // Theme toggle
-  var themeToggle = document.getElementById('theme-toggle');
+  const themeToggle = document.getElementById('theme-toggle');
   
-  themeToggle?.addEventListener('click', function() {
-    var isDark = document.documentElement.classList.toggle('dark');
+  themeToggle?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 </script>
