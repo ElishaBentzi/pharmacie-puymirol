@@ -3,133 +3,286 @@ import BasePage from '../components/BasePage.astro';
 
 const title = "Pharmacie Puymirol : Votre santé, notre priorité depuis 1945";
 const description = "Besoin d'une téléconsultation médicale rapide ? La Pharmacie Puymirol vous met en relation avec des médecins via Medadom.";
+
+const slides = [
+  {
+    img: '/images/2024/04/lapsa-450.jpg',
+    alt: 'Alimentation Lapsa pour chiens et chats',
+    title: 'Alimentation Chien et Chat',
+    titleColor: 'text-ink-700 dark:text-ink-100',
+    text: "Il est composé d’ingrédients de haute qualité, notamment de viande fraîche, de grains entiers et de graisses saines. Il est disponible dans une variété de formules pour répondre aux besoins de différents chiens et chats. Fabriqué en France.",
+    button: { label: 'Video', href: 'https://youtu.be/xToPayF1HYo', external: true },
+  },
+  {
+    img: '/images/2024/04/fachada-vieja-450.jpg',
+    alt: 'La bastide de Puymirol, siège de la pharmacie',
+    title: 'À votre service depuis 1945',
+    titleColor: 'text-coral-500',
+    text: 'Pharmacie Puymirol',
+    button: null,
+  },
+  {
+    img: '/images/2024/04/medadom-450.jpeg',
+    alt: 'Cabine de téléconsultation Medadom',
+    title: 'Téléconsultation',
+    titleColor: 'text-ink-700 dark:text-ink-100',
+    text: "La pharmacie Puymirol offre la possibilité de téléconsultations avec des médecins via la plateforme Medadom. Medadom vous met en relation avec des médecins généralistes et spécialistes en temps réel, sans avoir à attendre les rendez-vous traditionnels.",
+    button: { label: 'Téléconsultation', href: '/teleconsultation', external: false },
+  },
+  {
+    img: '/images/2024/04/nutritionist-450.jpg',
+    alt: 'Diététicienne en consultation',
+    title: 'Diététicienne',
+    titleColor: 'text-ink-700 dark:text-ink-100',
+    text: "Une bonne nutrition est essentielle. Que Votre Nourriture Soit Votre Première Médecine. Dans votre pharmacie Puymirol, vous pourrez consulter une diététicienne.",
+    button: { label: 'Diététicienne', href: 'https://docs.google.com/forms/d/e/1FAIpQLSdqkPKzKco8RVY3OzAx', external: true },
+  },
+];
+
+const checks = [
+  // orden de llenado por filas (2 columnas) igual que el original
+  'Matériel médical',
+  'Téléconsultation',
+  'Médecine naturelle',
+  'Orthopédie et Contention',
+  'Vétérinaire',
+  'Compléments alimentaires',
+  'Alimentation Chien et Chat',
+];
+
+const banners = [
+  {
+    img: '/images/2020/04/Pharmacie_Productos.jpg',
+    alt: 'Produits de la pharmacie',
+    title: 'Produits de Qualité',
+    text: 'Profitez de notre sélection de produits de la meilleure qualité.',
+    href: null,
+  },
+  {
+    img: '/images/2019/07/banner-naturelle.jpg',
+    alt: 'Huiles essentielles et médecine naturelle',
+    title: 'Médecine Naturelle',
+    text: 'Phytothérapie, aromathérapie, homéopathie, compléments alimentaires, huiles essentielles BIO',
+    href: null,
+  },
+  {
+    img: '/images/2019/07/banner-prestations.jpg',
+    alt: 'Personne alitée accueillie à domicile',
+    title: 'Votre bien-être est notre préoccupation',
+    text: 'Nous sommes à votre écoute afin de vous conseiller de la manière la mieux adaptée à vos symptômes, votre pathologie, vos besoins, à travers notre expertise',
+    href: '/orthopedie-et-contention',
+  },
+];
+
+const services = [
+  {
+    title: 'Calendriers Polliniques',
+    text: 'Consultez les calendriers polliniques pour rester informé en temps réel du degré de propagation du pollen en fonction des plantes et des saisons.',
+    icon: 'calendar',
+  },
+  {
+    title: 'Pharmacie de Garde',
+    text: 'Restez toujours informé de la pharmacie de garde la plus proche. Évitez les kilomètres inutiles.',
+    icon: 'cross',
+  },
+  {
+    title: 'Calendrier des Vaccinations',
+    text: "Faites le point sur vos vaccins en quelques secondes et obtenez des recommandations en fonction de votre âge et de votre sexe. Préparez vos voyages à l'étranger sereinement.",
+    icon: 'syringe',
+  },
+  {
+    title: 'Livraison à Domicile',
+    text: "Nous avons un service de livraison à domicile de médicaments et de matériel médical, en particulier pour les personnes à mobilité réduite ou hospitalisées à domicile. Une personne habilitée de la pharmacie se chargera de la livraison du traitement ou des produits.",
+    icon: 'box',
+  },
+];
 ---
 
 <BasePage title={title} description={description}>
-  <!-- Hero Principal -->
-  <section class="relative bg-primary-700 text-white py-20 overflow-hidden">
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="max-w-3xl" data-aos="fade-right">
-        <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">
-          Pharmacie Puymirol
-        </h1>
-        <p class="text-xl md:text-2xl mb-8 text-primary-100">
-          À votre service depuis 1945. Prospérité, Santé et Union.
+  <!-- 1. Hero: carrusel 2 tarjetas sobre fondo mapa-watermark -->
+  <section class="relative overflow-hidden" aria-label="Actualités de la pharmacie">
+    <div class="absolute inset-0 bg-[url('/images/2024/04/Puymirol-map-bn-1350x650-1.jpg')] bg-cover bg-center opacity-60 dark:opacity-20" aria-hidden="true"></div>
+    <div class="container-site relative py-8 lg:py-12">
+      <div class="relative">
+        <div
+          id="hero-track"
+          class="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {slides.map((s) => (
+            <article class="w-full flex-shrink-0 snap-start px-1 lg:w-[calc(50%-12px)]">
+              <img src={s.img} alt={s.alt} width="450" height="450" loading="eager" class="w-full aspect-square object-cover" />
+              <h5 class:list={['mt-5 text-3xl font-bold lg:text-[36px] lg:leading-tight', s.titleColor]}>{s.title}</h5>
+              <p class="mt-3 text-[15px] leading-relaxed text-ink-600 dark:text-ink-300 lg:text-base">{s.text}</p>
+              {s.button && (
+                <a
+                  href={s.button.href}
+                  class="mt-5 inline-block rounded-[4px] bg-link px-7 py-3 text-[15px] font-medium text-white transition-colors hover:bg-petrol-500"
+                  {...(s.button.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {s.button.label}
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+
+        <!-- Flechas -->
+        <button id="hero-prev" class="absolute -left-3 top-[22%] flex h-10 w-10 items-center justify-center rounded-full bg-link/85 text-white transition-colors hover:bg-link" aria-label="Diapositive précédente">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m15 6-6 6 6 6"/></svg>
+        </button>
+        <button id="hero-next" class="absolute -right-3 top-[22%] flex h-10 w-10 items-center justify-center rounded-full bg-link/85 text-white transition-colors hover:bg-link" aria-label="Diapositive suivante">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg>
+        </button>
+      </div>
+
+      <!-- Puntos + contador (alineados a la derecha como el original) -->
+      <div class="mt-4 flex items-center justify-end gap-2" aria-hidden="true">
+        {slides.map((_, i) => (
+          <button class={`hero-dot h-2.5 w-2.5 rounded-full transition-colors ${i === 0 ? 'bg-[#61ce70]' : 'bg-ink-300'}`} data-index={i} aria-label={`Aller à la diapositive ${i + 1}`}></button>
+        ))}
+      </div>
+      <p class="mt-2 text-right text-[13px] font-medium text-ink-400"><span id="hero-current">1</span> / {slides.length}</p>
+    </div>
+  </section>
+
+  <!-- 2. Banda: Matériels et Prestations -->
+  <section class="relative overflow-hidden py-20 lg:py-28" aria-label="Matériel médical à domicile">
+    <div class="absolute inset-0 bg-[url('/images/2024/04/Materiel-Medical-1350x650-1.jpg')] bg-cover bg-center" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+    <div class="container-site relative text-center" data-aos="fade-up">
+      <h2 class="mx-auto max-w-2xl text-3xl font-bold leading-tight text-white lg:text-4xl">Matériels et Prestations de santé à Domicile</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-white/95">
+        Location Matériel Médical et Prestations de santé à domicile et en collectivités en partenariat avec les professionnels de santé, en particulier pour les personnes à mobilité réduite ou hospitalisées à domicile.
+      </p>
+      <a href="/materiel-medical" class="btn-coral btn-coral-hover mt-7">Matériel Médical</a>
+    </div>
+  </section>
+
+  <!-- 3. Pharmacie Puymirol - À votre écoute -->
+  <section class="bg-white py-16 dark:bg-ink-900 lg:py-20" aria-label="Pharmacie Puymirol à votre écoute">
+    <div class="container-site grid items-center gap-12 lg:grid-cols-2">
+      <div data-aos="fade-right">
+        <h2 class="text-3xl font-bold text-ink-800 dark:text-ink-100 lg:text-[32px]">Pharmacie Puymirol</h2>
+        <p class="mt-1 flex items-center gap-4 text-2xl font-bold text-coral-500">
+          À votre écoute
+          <span class="hidden h-px flex-1 bg-ink-200 dark:bg-ink-600 sm:block" aria-hidden="true"></span>
         </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/teleconsultation" class="bg-white text-primary-700 hover:bg-primary-50 px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105">
-            Téléconsultation
-          </a>
-          <a href="/materiel-medical" class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-3 rounded-full font-bold transition-all">
-            Matériel Médical
-          </a>
+        <div class="mt-6 space-y-4 text-[13px] leading-relaxed text-ink-600 dark:text-ink-300">
+          <p>
+            <strong class="font-bold">Service Téléconsultation</strong> . À la Pharmacie Puymirol, vous pouvez consulter un médecin à distance dans un espace confidentiel équipé de dispositifs médicaux MEDADOM.
+          </p>
+          <p>
+            <strong class="font-bold">Votre bien-être est notre préoccupation</strong> . Nous sommes à votre écoute afin de vous conseiller de la manière la mieux adaptée à vos symptômes, votre pathologie, vos besoins, à travers notre expertise en diététique, aromathérapie, homéopathie, phytothérapie, orthopédie.
+          </p>
+          <p>
+            Votre pharmacie Puymirol s’engage à vous proposer des <strong class="font-bold">produits de qualité</strong> afin que vous puissiez prendre soin de votre santé et de celle de vos proches.
+          </p>
         </div>
+        <ul class="mt-7 grid grid-cols-1 gap-x-8 gap-y-2.5 sm:grid-cols-2" aria-label="Nos services">
+          {checks.map((c) => (
+            <li class="flex items-center gap-2 text-[13px] font-medium text-ink-700 dark:text-ink-200">
+              <svg class="h-4 w-4 flex-shrink-0 text-coral-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4 12.5 5 5L20 6.5"/></svg>
+              {c}
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
-    <div class="absolute right-0 top-0 w-1/2 h-full opacity-20 hidden lg:block">
-       <img src="/images/2019/07/home-pharmacist-opt.png" alt="Pharmacien tenant des médicaments dans la pharmacie" class="object-cover h-full w-full" loading="lazy" />
-    </div>
-  </section>
-
-  <!-- Sección Servicios Destacados -->
-  <section class="py-16 bg-white dark:bg-gray-900" aria-label="Nos services">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        
-        <!-- Téléconsultation -->
-        <article class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl transition-all hover:shadow-xl" data-aos="fade-up">
-          <div class="mb-4 overflow-hidden rounded-xl h-48">
-            <img src="/images/2024/04/medadom-450.jpeg" alt="Service de téléconsultation Medadom disponible en pharmacie" class="w-full h-full object-cover transition-transform group-hover:scale-110" loading="lazy" />
-          </div>
-          <h3 class="text-xl font-bold mb-3 dark:text-white">Téléconsultation</h3>
-          <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
-            Consultez un médecin en temps réel avec Medadom, sans attente traditionnelle.
-          </p>
-          <a href="/teleconsultation" class="text-primary-600 font-semibold inline-flex items-center hover:gap-2 transition-all">
-            En savoir plus <span class="ml-1" aria-hidden="true">→</span>
-          </a>
-        </article>
-
-        <!-- Diététicienne -->
-        <article class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl transition-all hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
-          <div class="mb-4 overflow-hidden rounded-xl h-48">
-            <img src="/images/2024/04/nutritionist-450.jpg" alt="Diététicienne en consultation nutritionnelle" class="w-full h-full object-cover transition-transform group-hover:scale-110" loading="lazy" />
-          </div>
-          <h3 class="text-xl font-bold mb-3 dark:text-white">Diététicienne</h3>
-          <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
-            Une bonne nutrition est votre première médecine. Consultations disponibles sur place.
-          </p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqkPKzKco8RVY3OzAxKwaj93_saJgS4d52c4f135tBQzlO4Q/viewform?embedded=true" target="_blank" rel="noopener noreferrer" class="text-primary-600 font-semibold inline-flex items-center hover:gap-2 transition-all">
-            Prendre RDV <span class="ml-1" aria-hidden="true">→</span>
-          </a>
-        </article>
-
-        <!-- Alimentation Animale -->
-        <article class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl transition-all hover:shadow-xl" data-aos="fade-up" data-aos-delay="200">
-          <div class="mb-4 overflow-hidden rounded-xl h-48">
-            <img src="/images/2024/04/lapsa-450.jpg" alt="Alimentation premium Lapsa pour chiens et chats" class="w-full h-full object-cover transition-transform group-hover:scale-110" loading="lazy" />
-          </div>
-          <h3 class="text-xl font-bold mb-3 dark:text-white">Alimentation Chien/Chat</h3>
-          <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
-            Ingrédients de haute qualité, viande fraîche. Fabriqué en France pour vos compagnons.
-          </p>
-          <span class="text-primary-600 font-semibold">Qualité Premium</span>
-        </article>
-
-        <!-- Histoire -->
-        <article class="group p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl transition-all hover:shadow-xl" data-aos="fade-up" data-aos-delay="300">
-          <div class="mb-4 overflow-hidden rounded-xl h-48">
-            <img src="/images/2024/04/fachada-vieja-450.jpg" alt="Façade historique de la Pharmacie Puymirol depuis 1945" class="w-full h-full object-cover transition-transform group-hover:scale-110" loading="lazy" />
-          </div>
-          <h3 class="text-xl font-bold mb-3 dark:text-white">Depuis 1945</h3>
-          <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
-            Plus de 75 ans à prendre soin de la santé des citoyens de la région.
-          </p>
-          <span class="text-primary-600 font-semibold">Votre Proximité</span>
-        </article>
-
+      <div class="flex justify-center lg:justify-end" data-aos="fade-left">
+        <img src="/images/2019/07/home-pharmacist-opt.png" alt="Pharmacienne de la Pharmacie Puymirol à votre écoute" width="800" height="800" loading="lazy" class="w-full max-w-[480px]" />
       </div>
     </div>
   </section>
 
-  <!-- Sección de Matériel Médical -->
-  <section class="py-16 bg-gray-100 dark:bg-gray-800" aria-label="Matériel médical">
-    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
-      <div class="md:w-1/2" data-aos="fade-right">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6 dark:text-white">Matériels et Prestations à Domicile</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-          Location et vente en partenariat avec les professionnels de santé, idéal pour les personnes à mobilité réduite ou hospitalisées à domicile.
-        </p>
-        <a href="/materiel-medical" class="inline-block bg-primary-600 text-white px-8 py-3 rounded-lg hover:shadow-lg transition-all">
-          Explorer le catalogue
-        </a>
-      </div>
-      <div class="md:w-1/2" data-aos="zoom-in">
-        <img src="/images/2019/07/home-family-opt.png" alt="Famille bénéficiant de services de santé à domicile" class="rounded-2xl shadow-2xl" loading="lazy" />
-      </div>
+  <!-- 4. Banda: Contention -->
+  <section class="relative overflow-hidden py-20 lg:py-28" aria-label="Orthopédie et contention">
+    <div class="absolute inset-0 bg-[url('/images/2024/04/contention-1350x650-1.jpg')] bg-cover bg-center" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+    <div class="container-site relative text-center" data-aos="fade-up">
+      <h1 class="mx-auto max-w-3xl text-3xl font-bold leading-tight text-white lg:text-4xl">Chaussettes, bas et collants de contention</h1>
+      <p class="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-white/95">
+        Consulter nos catalogues de contention. Solutions de contention textiles efficaces et innovantes qui agissent sur le bien-être et la santé des femmes et des hommes.
+      </p>
+      <a href="/orthopedie-et-contention" class="btn-coral btn-coral-hover mt-7">Orthopédie et Contention</a>
     </div>
   </section>
 
-  <!-- Calendriers et Infos -->
-  <section class="py-16 bg-white dark:bg-gray-900" aria-label="Ressources santé">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center p-6 border border-gray-100 dark:border-gray-700 rounded-xl">
-          <h3 class="text-lg font-bold mb-2">Calendriers Polliniques</h3>
-          <p class="text-sm text-gray-500 mb-4">Information en temps réel sur la propagation du pollen.</p>
-          <a href="https://www.stallergenesgreer.fr/calendriers-polliniques-regionaux" target="_blank" rel="noopener noreferrer" class="text-primary-600 text-sm font-medium">Consulter le calendrier</a>
-        </div>
-        <div class="text-center p-6 border border-gray-100 dark:border-gray-700 rounded-xl">
-          <h3 class="text-lg font-bold mb-2">Pharmacie de Garde</h3>
-          <p class="text-sm text-gray-500 mb-4">Trouvez la pharmacie ouverte la plus proche de chez vous.</p>
-          <a href="http://www.3237.fr" target="_blank" rel="noopener noreferrer" class="text-primary-600 text-sm font-medium">Appeler le 3237</a>
-        </div>
-        <div class="text-center p-6 border border-gray-100 dark:border-gray-700 rounded-xl">
-          <h3 class="text-lg font-bold mb-2">Vaccinations</h3>
-          <p class="text-sm text-gray-500 mb-4">Faites le point sur vos recommandations vaccinales.</p>
-          <a href="https://vaccination-info-service.fr" target="_blank" rel="noopener noreferrer" class="text-primary-600 text-sm font-medium">En savoir plus</a>
-        </div>
+  <!-- 5. Tres banners -->
+  <section class="grid grid-cols-1 md:grid-cols-3" aria-label="Nos univers">
+    {banners.map((b) => {
+      const inner = (
+        <>
+          <div class={`absolute inset-0 bg-cover bg-center ${b.href ? '' : ''}`} style={`background-image:url('${b.img}')`} aria-hidden="true"></div>
+          <div class="absolute inset-0 bg-black/35 transition-colors hover:bg-black/45" aria-hidden="true"></div>
+          <div class="relative flex h-full flex-col items-center justify-center gap-3 px-8 py-20 text-center">
+            <h3 class="text-xl font-bold text-white lg:text-[22px]">{b.title}</h3>
+            <p class="max-w-xs text-[13px] leading-relaxed text-white/90">{b.text}</p>
+          </div>
+        </>
+      );
+      return b.href ? (
+        <a href={b.href} class="relative overflow-hidden" aria-label={b.title}>{inner}</a>
+      ) : (
+        <div class="relative overflow-hidden">{inner}</div>
+      );
+    })}
+  </section>
+
+  <!-- 6. Servicios -->
+  <section class="bg-white py-16 dark:bg-ink-900 lg:py-20" aria-label="Services pratiques">
+    <div class="container-site grid items-center gap-12 lg:grid-cols-2">
+      <div class="order-2 flex justify-center lg:order-1 lg:justify-start" data-aos="fade-right">
+        <img src="/images/2019/07/home-family-opt.png" alt="Famille suivie par la Pharmacie Puymirol - vaccination et calendrier de santé" width="800" height="800" loading="lazy" class="w-full max-w-[440px]" />
+      </div>
+      <div class="order-1 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:order-2" data-aos="fade-left">
+        {services.map((s) => (
+          <article>
+            {s.icon === 'calendar' && (
+              <svg class="mx-auto h-12 w-12 text-coral-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18" stroke-linecap="round"/><path d="M9.5 15.5h5M12 13v5" stroke-linecap="round"/></svg>
+            )}
+            {s.icon === 'cross' && (
+              <svg class="mx-auto h-12 w-12 text-coral-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg>
+            )}
+            {s.icon === 'syringe' && (
+              <svg class="mx-auto h-12 w-12 text-coral-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m18 2 4 4M20.5 4.5 19 6m-8 9-4.5 4.5M4 21l1-4 9.5-9.5 3 3L8 20l-4 1z"/><path d="m13 8 3 3M15.5 5.5 19 9" stroke-linecap="round"/></svg>
+            )}
+            {s.icon === 'box' && (
+              <svg class="mx-auto h-12 w-12 text-coral-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.5v8a2 2 0 0 1-1 1.7l-7 4a2 2 0 0 1-2 0l-7-4a2 2 0 0 1-1-1.7v-8a2 2 0 0 1 1-1.7l7-4a2 2 0 0 1 2 0l7 4a2 2 0 0 1 1 1.7z"/><path stroke-linecap="round" d="m3.3 7.3 8.7 5 8.7-5M12 21.5v-9.2"/></svg>
+            )}
+            <h3 class="mt-3 text-center text-xl font-bold text-ink-700 dark:text-ink-100">{s.title}</h3>
+            <p class="mt-2 text-[13px] leading-relaxed text-ink-600 dark:text-ink-300">{s.text}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 </BasePage>
+
+<script>
+  // Carrusel hero: flechas, puntos y contador
+  const track = document.getElementById('hero-track')!;
+  const dots = [...document.querySelectorAll<HTMLButtonElement>('.hero-dot')];
+  const current = document.getElementById('hero-current')!;
+  const count = dots.length;
+
+  const perView = () => (window.innerWidth >= 1024 ? 2 : 1);
+  const maxIndex = () => Math.max(0, count - perView());
+  let index = 0;
+
+  const cardWidth = () => (track.firstElementChild as HTMLElement).getBoundingClientRect().width + 24;
+
+  function goTo(i: number) {
+    index = Math.max(0, Math.min(i, maxIndex()));
+    track.scrollTo({ left: index * cardWidth(), behavior: 'smooth' });
+    current.textContent = String(index + 1);
+    dots.forEach((d, di) => {
+      const active = di === index;
+      d.classList.toggle('bg-[#61ce70]', active);
+      d.classList.toggle('bg-ink-300', !active);
+    });
+  }
+
+  document.getElementById('hero-prev')?.addEventListener('click', () => goTo(index - 1));
+  document.getElementById('hero-next')?.addEventListener('click', () => goTo(index + 1));
+  dots.forEach((d) => d.addEventListener('click', () => goTo(Number(d.dataset.index))));
+  window.addEventListener('resize', () => goTo(index));
+</script>

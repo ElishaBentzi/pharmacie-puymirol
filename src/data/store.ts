@@ -9,7 +9,11 @@ export const pharmacyData = {
     zipCode: "47270",
     phone: "09 66 11 14 27",
     phoneHref: "+33966111427",
+    fax: "09 73 88 85 22",
+    faxHref: "+33973888522",
     email: "pharmaciepuymirol@gmail.com",
+    emailHref: "pharmacien@pharmacie-puymirol.com",
+    facebook: "https://www.facebook.com/profile.php?id=100064024059967",
     fullAddress: "32 rue Royale, 47270 PUYMIROL, France"
   },
 
@@ -31,7 +35,7 @@ export const pharmacyData = {
   services: [
     { name: "Téléconsultation", href: "/teleconsultation", description: "Consultez un médecin à distance via Medadom" },
     { name: "Matériel Médical", href: "/materiel-medical", description: "Location et vente de matériel médical" },
-    { name: "Orthopédie et Contention", href: "/orthopedie-contention", description: "Solutions de contention et orthopédie" }
+    { name: "Orthopédie et Contention", href: "/orthopedie-et-contention", description: "Solutions de contention et orthopédie" }
   ],
 
   serviceArea: [

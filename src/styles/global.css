@@ -3,48 +3,136 @@
 /* Dark mode por clase en <html> (toggle del header, sin flash) */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+  Paleta y tokens extraidos del CSS real del original (Elementor kit-2562 + post-*)
+  - coral  #F85856 : CTA, acentos, titulos decorativos (Courgette), checklist
+  - teal   #00B98D : banners de titulo de paginas interiores
+  - petrol #02658C : iconos de contacto del header, icon-box hovers
+  - ink    #3B3D42 : footer oscuro, headings
+  - link   #398FFC : enlaces/hovers del tema
+  Botones: cuadrados (radius 0), coral -> hover blanco. Diseno plano, sin sombras.
+*/
 @theme {
-  /* Azul Principal (identidad temporal del intento anterior; se reemplaza por la paleta real en la fase de diseño) */
-  --color-pharmacy-50: #eff6ff;
-  --color-pharmacy-100: #dbeafe;
-  --color-pharmacy-200: #bfdbfe;
-  --color-pharmacy-300: #93c5fd;
-  --color-pharmacy-400: #60a5fa;
-  --color-pharmacy-500: #3b82f6;
-  --color-pharmacy-600: #2563eb;
-  --color-pharmacy-700: #1d4ed8;
-  --color-pharmacy-800: #1e40af;
-  --color-pharmacy-900: #1e3a8a;
-  --color-pharmacy-950: #172554;
+  /* Coral principal (CTA / acentos) */
+  --color-coral-50: #fff1f0;
+  --color-coral-100: #ffe0de;
+  --color-coral-200: #ffc5c2;
+  --color-coral-300: #ff9f9b;
+  --color-coral-400: #fb7a76;
+  --color-coral-500: #f85856;
+  --color-coral-600: #e43e3d;
+  --color-coral-700: #bd2f2f;
+  --color-coral-800: #96282a;
+  --color-coral-900: #7a2629;
+  --color-coral-950: #44110f;
 
-  --color-health-50: #f0fdf4;
-  --color-health-100: #dcfce7;
-  --color-health-200: #bbf7d0;
-  --color-health-300: #86efac;
-  --color-health-400: #4ade80;
-  --color-health-500: #22c55e;
-  --color-health-600: #16a34a;
-  --color-health-700: #15803d;
-  --color-health-800: #166534;
-  --color-health-900: #14532d;
+  /* Verde-teal (banners de titulo) */
+  --color-teal-50: #eefbf6;
+  --color-teal-100: #d3f5e7;
+  --color-teal-200: #a9ead2;
+  --color-teal-300: #71d9b8;
+  --color-teal-400: #33c49d;
+  --color-teal-500: #00b98d;
+  --color-teal-600: #009a76;
+  --color-teal-700: #027b60;
+  --color-teal-800: #05624e;
+  --color-teal-900: #065141;
+  --color-teal-950: #022e25;
 
-  /* Legacy primary (compatibilidad con clases existentes) */
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
+  /* Petroleo (iconos header, acentos secundarios) */
+  --color-petrol-50: #f0f9fc;
+  --color-petrol-100: #d9eff7;
+  --color-petrol-200: #b5e0ef;
+  --color-petrol-300: #81c9e2;
+  --color-petrol-400: #47aacd;
+  --color-petrol-500: #0a7aa6;
+  --color-petrol-600: #02658c;
+  --color-petrol-700: #025474;
+  --color-petrol-800: #044661;
+  --color-petrol-900: #073b51;
+  --color-petrol-950: #062637;
 
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
-  --font-heading: "Poppins", "Inter", sans-serif;
+  /* Tinta (footer oscuro, headings, texto) */
+  --color-ink-50: #f6f6f7;
+  --color-ink-100: #e6e6e8;
+  --color-ink-200: #c9c9cd;
+  --color-ink-300: #a1a2a4;
+  --color-ink-400: #77787c;
+  --color-ink-500: #56575b;
+  --color-ink-600: #3e3e3e;
+  --color-ink-700: #3b3d42;
+  --color-ink-800: #2b2b2b;
+  --color-ink-900: #232326;
+  --color-ink-950: #131315;
 
-  --background-image-pharmacy-gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #22c55e 100%);
+  --color-link: #398ffc;
 
-  --shadow-pharmacy: 0 10px 40px -10px rgb(30 64 175 / 0.3);
-  --shadow-health: 0 10px 40px -10px rgb(34 197 94 / 0.3);
+  /* Tipografia del original (Bunny Fonts, GDPR-friendly) */
+  --font-sans: "Roboto", system-ui, -apple-system, sans-serif;
+  --font-heading: "Roboto", system-ui, sans-serif;
+  --font-script: "Courgette", cursive;
+  --font-archivo: "Archivo", sans-serif;
+
+  /* Contenedor del original */
+  --container-site: 1140px;
+
+  /* Legacy primary: alias a la paleta real mientras se migran paginas */
+  --color-pharmacy-50: #fff1f0;
+  --color-pharmacy-500: #f85856;
+  --color-pharmacy-600: #e43e3d;
+  --color-pharmacy-800: #3b3d42;
+  --color-pharmacy-900: #2b2b2b;
+  --color-health-500: #00b98d;
+  --color-health-600: #009a76;
+}
+
+/* Utilidades del sistema de diseno fiel */
+@utility container-site {
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* Boton CTA del original: cuadrado, coral -> hover blanco */
+@utility btn-coral {
+  display: inline-block;
+  background-color: var(--color-coral-500);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+  padding: 0.75rem 1.75rem;
+  text-align: center;
+  border-radius: 0;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+@utility btn-coral-hover {
+  &:hover {
+    background-color: #fff;
+    color: var(--color-ink-700);
+  }
+}
+
+/* Estilos base del original — dentro de @layer base para que las utilidades de Tailwind puedan sobreescribir */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    color: var(--color-ink-600);
+    background-color: #fff;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-ink-700);
+  }
+
+  /* Enlaces del tema */
+  a {
+    color: var(--color-link);
+  }
 }

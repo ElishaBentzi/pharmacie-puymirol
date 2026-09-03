@@ -3,52 +3,255 @@ import BasePage from '../components/BasePage.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 
 const title = "Matériel médical pour votre autonomie | Pharmacie Puymirol";
-const description = "Découvrez notre large sélection de produits de santé (Alcura, Revitive) pour améliorer votre bien-être au quotidien. Livraison rapide.";
+const description = "Besoin de matériel médical de qualité ? Découvrez notre large sélection de produits de santé pour améliorer votre bien-être au quotidien.";
+
+const zones = [
+  "47240 Lafox, France",
+  "47270 Tayrac, France",
+  "47270 Grayssas, France",
+  "47270 Puymirol, France",
+  "82400 Perville, France",
+  "47700 Casteljaloux, France",
+  "47270 Saint-Urcisse, France",
+  "47270 Puymirol, La Roche, France",
+  "47270 Saint-Romain-le-Noble, France",
+  "47270 Puymirol, Saint-Julien, France",
+  "47270 Saint-Urcisse, Sainte-Croix, France",
+  "47270 Saint-Caprais-de-Lerm, Malbés, France",
+];
+
+const gallery = [
+  { src: '/images/2019/12/revitive-medic-pharma-1.jpg', alt: 'Revitive Medic en usage' },
+  { src: '/images/2019/12/revitive-medic-pharma-0.png', alt: 'Revitive Medic Pharma' },
+  { src: '/images/2019/12/revitive-medic-pharma-2.png', alt: 'Revitive Medic, détails' },
+  { src: '/images/2019/12/revitive-medic-pharma-3.png', alt: 'Revitive Medic, télécommande' },
+  { src: '/images/2019/12/revitive-medic-pharma-4.png', alt: 'Revitive Medic, électrodes' },
+  { src: '/images/2019/12/revitive-medic-pharma-5.png', alt: 'Revitive Medic, housse' },
+  { src: '/images/2019/12/revitive-medic-pharma-6.jpg', alt: 'Revitive Medic, présentation' },
+];
+
+const tabs = [
+  {
+    label: 'Indications',
+    content: [
+      { text: "Les stimulateurs circulatoires REVITIVE s’appuient sur l’ÉlectroStimulation Musculaire pour faire fonctionner les muscles des pieds et des jambes." },
+      { text: "REVITIVE Medic a prouvé cliniquement sa capacité à :", bold: true },
+      { list: [
+        "Réduire le gonflement des pieds et des chevilles",
+        "Soulager la sensation de jambes et pieds lourds et douloureux",
+        "Améliorer la circulation sanguine des jambes",
+      ]},
+      { heading: "Soulage les sensations de jambes lourdes, pieds et chevilles enflés" },
+      { text: "Le système IsoRocker® permet au Revitive medic de basculer légèrement d’avant en arrière et inversement, pour créer un mouvement involontaire de la cheville et répliquer ainsi le mouvement de bascule du pied. Les formes d’Ondes à Impulsions Larges permettent de maximiser les effets de la stimulation. il y a 15 variantes de formes d’ondes qui peuvent être changées via la télécommande du REVITIVE" },
+    ],
+  },
+  {
+    label: 'Caractéristiques',
+    content: [
+      { list: [
+        "Dimensions (IsoRocker activé) : Largeur : 35,5 cm",
+        "Hauteur : 35,5 cm",
+        "Profondeur : 7,35 cm",
+        "Dimensions (IsoRocker désactivé) : Largeur : 35,35 cm",
+        "Profondeur : 10,05 cm",
+        "Poids : 1,6 Kg",
+        "Puissance consommée : 5 W",
+        "Alimentation : Entrée (avec adaptateur) : 100-240V Alternatif, 50/60Hz",
+        "Sortie : 5V Continu, 1000 mA",
+        "Température de stockage : Entre 10 et 40 °",
+        "Norme : IP 21",
+      ]},
+    ],
+  },
+  {
+    label: 'Accessoires',
+    content: [
+      { list: [
+        "Housse de transport pour ranger votre stimulateur circulatoire REVITIVE et ses accessoires",
+        "Électrodes corporelles pour REVITIVE et MEDIC PHARMA",
+      ]},
+    ],
+  },
+];
+
+const contreIndications = [
+  "Port d’un pacemaker ou AICD (défibrillateur cardiaque automatique)",
+  "Traitement ou symptômes relatifs à une thrombose veineuse profonde (TVP) existante",
+  "Premier trimestre de la grossesse",
+];
 ---
 
 <BasePage title={title} description={description}>
   <Breadcrumb items={[{ label: 'Matériel Médical' }]} />
-  
-  <section class="py-16 bg-white dark:bg-gray-900">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto mb-16 text-center" data-aos="fade-down">
-        <h1 class="text-4xl md:text-5xl font-bold font-heading mb-6 text-primary-700 dark:text-primary-400">
-          Matériel Médical
-        </h1>
-        <p class="text-lg text-gray-600 dark:text-gray-300">
-          Découvrez notre sélection de produits de santé conçus pour améliorer votre bien-être au quotidien. 
-          Lits de qualité supérieure, béquilles, marcheurs, fauteuils roulants.
-        </p>
-      </div>
 
-      <div class="grid lg:grid-cols-2 gap-16 items-start mb-24">
-        <div class="prose dark:prose-invert max-w-none" data-aos="fade-right">
-          <h2 class="text-2xl font-bold">Partenariat Alcura</h2>
-          <p>Consulter notre catalogue interactif pour découvrir l'ensemble des dispositifs disponibles en location et vente.</p>
-          <div class="aspect-[9/7] w-full border rounded-2xl overflow-hidden shadow-2xl bg-white">
-            <iframe src="https://catalogue.alcura-health.fr/1090907/#page=102" class="w-full h-full" allow="fullscreen" title="Catalogue Alcura - Équipements médicaux"></iframe>
+  <!-- Banner verde -->
+  <section class="bg-teal-500 py-10 lg:py-14">
+    <div class="container-site text-center" data-aos="fade-up">
+      <h1 class="text-5xl font-bold text-white lg:text-[64px] lg:leading-tight">Matériel Médical</h1>
+      <p class="mt-6 text-left text-[15px] font-bold leading-relaxed text-white lg:text-[17px]">
+        Au sein de notre pharmacie, vous aurez accès à un large choix de matériel médical.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro + zona -->
+  <section class="bg-white py-10 dark:bg-ink-900">
+    <div class="container-site space-y-5 text-[14px] leading-relaxed text-ink-600 dark:text-ink-300">
+      <p>
+        Découvrez notre sélection de produits de santé conçus pour améliorer votre bien-être au quotidien. Nos lits de qualité supérieure offrent un confort optimal et un soutien adapté, idéaux pour les environnements de soins à domicile ou en établissement de santé. Retrouvez votre mobilité avec nos béquilles légères et durables, et optez pour nos marcheurs robustes et maniables pour une exploration confiante. Choisissez la qualité et la fiabilité avec nos solutions de santé, y compris les lits et les fauteuils roulants, et redécouvrez la liberté de vivre pleinement chaque jour.
+      </p>
+      <div>
+        <p class="font-bold text-ink-700 dark:text-ink-100">Zone de service.</p>
+        <ul class="mt-3 list-disc space-y-1.5 pl-5">
+          {zones.map((z) => <li class="font-bold text-ink-700 dark:text-ink-200">{z}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catálogo Alcura (iframe del original) -->
+  <section class="bg-white pb-10 dark:bg-ink-900" aria-label="Catalogue Alcura">
+    <div class="container-site">
+      <iframe
+        src="https://catalogue.alcura-health.fr/1090907/#page=102"
+        title="Mon catalogue Alcura - Prestations de matériel à domicile"
+        class="h-[520px] w-full border-0"
+        loading="lazy"
+      ></iframe>
+      <p class="mt-2 text-[13px] text-ink-600 dark:text-ink-300">Au service du maintien à domicile</p>
+    </div>
+  </section>
+
+  <!-- REVITIVE -->
+  <section class="bg-white py-10 dark:bg-ink-900 lg:py-14" aria-label="Revitive">
+    <div class="container-site">
+      <h2 class="text-center text-5xl font-bold tracking-wide text-teal-500 lg:text-[56px]">REVITIVE</h2>
+
+      <div class="mt-10 grid items-start gap-10 lg:grid-cols-2">
+        <!-- Galería -->
+        <div data-aos="fade-right">
+          <img
+            id="revitive-main"
+            src={gallery[0].src}
+            alt={gallery[0].alt}
+            width="700"
+            height="700"
+            loading="lazy"
+            class="aspect-square w-full object-contain"
+          />
+          <div class="mt-4 grid grid-cols-7 gap-2">
+            {gallery.map((g, i) => (
+              <button
+                class:list={['overflow-hidden border-2 transition-colors', i === 0 ? 'border-coral-500' : 'border-transparent hover:border-ink-200']}
+                data-gallery-index={i}
+                aria-label={`Voir l'image ${i + 1}`}
+              >
+                <img src={g.src} alt="" width="150" height="150" loading="lazy" class="aspect-square w-full object-cover" />
+              </button>
+            ))}
           </div>
         </div>
 
+        <!-- Pestañas -->
         <div data-aos="fade-left">
-          <h2 class="text-2xl font-bold mb-6">Solution REVITIVE</h2>
-          <div class="bg-teal-50 dark:bg-teal-900/10 p-8 rounded-3xl border border-teal-100 dark:border-teal-800">
-            <img src="/images/2019/12/revitive-medic-pharma-1.jpg" alt="Appareil REVITIVE Medic Pharma pour améliorer la circulation sanguine" class="rounded-xl mb-6 shadow-lg" loading="lazy" />
-            <h3 class="text-xl font-bold mb-4">REVITIVE MEDIC PHARMA</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
-              Soulage les sensations de jambes lourdes, pieds et chevilles enflés. Améliore cliniquement la circulation sanguine.
-            </p>
-            <ul class="text-sm space-y-2 mb-8">
-              <li><span aria-hidden="true">⚡</span> ÉlectroStimulation Musculaire</li>
-              <li><span aria-hidden="true">🔄</span> Système IsoRocker®</li>
-              <li><span aria-hidden="true">🌊</span> Ondes à Impulsions Larges</li>
-            </ul>
-            <a href="https://youtu.be/flB7i8rE5SA" target="_blank" rel="noopener noreferrer" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-medium hover:bg-teal-700 transition-colors">
-              Regarder la vidéo <span aria-hidden="true">→</span>
-            </a>
+          <div class="flex gap-1" role="tablist" aria-label="Informations Revitive">
+            {tabs.map((t, i) => (
+              <button
+                role="tab"
+                id={`revitive-tab-${i}`}
+                data-tab-index={i}
+                aria-selected={i === 0 ? 'true' : 'false'}
+                aria-controls={`revitive-panel-${i}`}
+                class:list={[
+                  'px-4 py-2.5 text-[12px] font-bold uppercase tracking-wide transition-colors',
+                  i === 0 ? 'bg-coral-500 text-white' : 'bg-coral-100 text-coral-600 hover:bg-coral-200',
+                ]}
+              >
+                {t.label}
+              </button>
+            ))}
           </div>
+          {tabs.map((t, i) => (
+            <div
+              role="tabpanel"
+              id={`revitive-panel-${i}`}
+              aria-labelledby={`revitive-tab-${i}`}
+              data-tab-panel={i}
+              class:list={['border border-gray-100 bg-white p-5 dark:border-ink-700 dark:bg-ink-800', i !== 0 && 'hidden']}
+            >
+              <h3 class="mb-3 text-lg font-bold text-coral-500">REVITIVE MEDIC PHARMA</h3>
+              <div class="space-y-3 text-[13px] leading-relaxed text-ink-600 dark:text-ink-300">
+                {t.content.map((block) => (
+                  <>
+                    {block.heading && <p class="font-bold text-ink-700 dark:text-ink-100">{block.heading}</p>}
+                    {block.text && <p class:list={{ 'font-bold text-ink-700 dark:text-ink-100': !!block.bold }}>{block.text}</p>}
+                    {block.list && (
+                      <ul class="list-disc space-y-1.5 pl-5">
+                        {block.list.map((li) => <li>{li}</li>)}
+                      </ul>
+                    )}
+                  </>
+                ))}
+                {i === 0 && (
+                  <div>
+                    <p class="font-bold text-ink-700 dark:text-ink-100">REVITIVE ne convient pas dans les cas suivants :</p>
+                    <ul class="mt-2 list-disc space-y-1.5 pl-5">
+                      {contreIndications.map((c) => <li>{c}</li>)}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Vídeo -->
+  <section class="bg-white pb-14 dark:bg-ink-900" aria-label="Vidéo Revitive">
+    <div class="container-site">
+      <iframe
+        src="https://www.youtube.com/embed/flB7i8rE5SA?controls=1&rel=0&playsinline=0&cc_load_policy=0&autoplay=0"
+        title="Arthrose du genou ? Marc témoigne de son expérience avec Revitive Medic Coach connecté"
+        class="aspect-video w-full border-0"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </section>
 </BasePage>
+
+<script>
+  // Galería Revitive
+  const main = document.getElementById('revitive-main') as HTMLImageElement;
+  document.querySelectorAll<HTMLButtonElement>('[data-gallery-index]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const img = btn.querySelector('img');
+      if (main && img) main.src = img.src;
+      document.querySelectorAll('[data-gallery-index]').forEach((b) => {
+        b.classList.toggle('border-coral-500', b === btn);
+        b.classList.toggle('border-transparent', b !== btn);
+      });
+    });
+  });
+
+  // Pestañas Revitive
+  document.querySelectorAll<HTMLButtonElement>('[data-tab-index]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const i = Number(btn.dataset.tabIndex);
+      document.querySelectorAll<HTMLButtonElement>('[data-tab-index]').forEach((b) => {
+        const active = b === btn;
+        b.setAttribute('aria-selected', String(active));
+        b.classList.toggle('bg-coral-500', active);
+        b.classList.toggle('text-white', active);
+        b.classList.toggle('bg-coral-100', !active);
+        b.classList.toggle('text-coral-600', !active);
+      });
+      document.querySelectorAll<HTMLElement>('[data-tab-panel]').forEach((p) => {
+        p.classList.toggle('hidden', Number(p.dataset.tabPanel) !== i);
+      });
+    });
+  });
+</script>

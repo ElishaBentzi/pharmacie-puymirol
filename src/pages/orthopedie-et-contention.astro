@@ -1,0 +1,73 @@
+---
+import BasePage from '../components/BasePage.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const title = "Meilleur Orthopédie et Contention | Solutions Efficaces";
+const description = "Besoin d'orthopédie et de contention ? Découvrez nos solutions efficaces et innovantes pour votre bien-être et votre santé.";
+---
+
+<BasePage title={title} description={description}>
+  <Breadcrumb items={[{ label: 'Orthopédie et Contention' }]} />
+
+  <!-- Banner verde -->
+  <section class="bg-teal-500 py-10 lg:py-14">
+    <div class="container-site text-center" data-aos="fade-up">
+      <h1 class="text-5xl font-bold text-white lg:text-[64px] lg:leading-tight">Orthopédie Et Contention</h1>
+      <p class="mx-auto mt-6 max-w-3xl text-[15px] font-bold leading-relaxed text-white lg:text-[17px]">
+        Consulter nos catalogues de contention. Solutions de contention textiles efficaces et innovantes qui agissent sur le bien-être et la santé des femmes et des hommes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="bg-white py-8 dark:bg-ink-900">
+    <div class="container-site text-[14px] leading-relaxed text-ink-600 dark:text-ink-300">
+      <p>
+        Consulter nos catalogues de contention. Solutions de contention textiles efficaces et innovantes qui agissent sur le bien-être et la santé des femmes et des hommes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Catálogos DonJoy / Sigvaris -->
+  <section class="bg-white py-8 dark:bg-ink-900" aria-label="Catalogues de contention">
+    <div class="container-site grid items-center gap-10 sm:grid-cols-2">
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-teal-500 lg:text-[42px]">DonJoy</h2>
+        <a
+          href="https://www.djoglobal.com/our-brands/donjoy"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-coral btn-coral-hover mt-4 text-[13px]"
+        >
+          Catalogue DonJoy
+        </a>
+      </div>
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-teal-500 lg:text-[42px]">SIGVARIS</h2>
+        <a
+          href="https://www.sigvaris.com/fr-fr/catalogue"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-coral btn-coral-hover mt-4 text-[13px]"
+        >
+          Catalogue Sigvaris
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Oxypharm (catálogo Vitadomia embebido, como el original) -->
+  <section class="bg-white py-10 dark:bg-ink-900 lg:py-14" aria-label="Catalogue Oxypharm">
+    <div class="container-site">
+      <h2 class="text-center text-5xl font-bold text-teal-500 lg:text-[56px]">Oxypharm</h2>
+      <div class="mt-8">
+        <iframe
+          src="https://www.vitadomia.com/-/grand-public/tous-nos-produits"
+          title="Tous nos produits Oxypharm - Vitadomia"
+          class="h-[720px] w-full border-0"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BasePage>

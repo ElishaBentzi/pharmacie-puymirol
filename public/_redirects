@@ -1,5 +1,7 @@
 # WordPress → Astro 301 Redirects
 # Generated for pharmacie-puymirol.fr migration
+# Slugs fieles al original: /, /teleconsultation, /materiel-medical,
+# /orthopedie-et-contention, /catalogues, /charte-de-protection-des-donnees-personnelles
 
 # Old WordPress pages
 /accueil    /    301
@@ -8,9 +10,12 @@
 /teleconsultation-medecin    /teleconsultation    301
 /materiel-medical-location    /materiel-medical    301
 /materiel-medical-vente    /materiel-medical    301
-/orthopedie    /orthopedie-contention    301
-/contention    /orthopedie-contention    301
-/orthopedie-contention    /orthopedie-contention    301
+/orthopedie    /orthopedie-et-contention    301
+/contention    /orthopedie-et-contention    301
+/orthopedie-contention    /orthopedie-et-contention    301
+# Typo presente en el sitio original (link del banner de contention)
+/orthopedia-et-contention    /orthopedie-et-contention    301
+/charte-de-protection    /charte-de-protection-des-donnees-personnelles    301
 
 # Old WordPress feeds
 /feed    /    301
