@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/* Dark mode por clase en <html> (toggle del header, sin flash) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Azul Principal (identidad temporal del intento anterior; se reemplaza por la paleta real en la fase de diseño) */
+  --color-pharmacy-50: #eff6ff;
+  --color-pharmacy-100: #dbeafe;
+  --color-pharmacy-200: #bfdbfe;
+  --color-pharmacy-300: #93c5fd;
+  --color-pharmacy-400: #60a5fa;
+  --color-pharmacy-500: #3b82f6;
+  --color-pharmacy-600: #2563eb;
+  --color-pharmacy-700: #1d4ed8;
+  --color-pharmacy-800: #1e40af;
+  --color-pharmacy-900: #1e3a8a;
+  --color-pharmacy-950: #172554;
+
+  --color-health-50: #f0fdf4;
+  --color-health-100: #dcfce7;
+  --color-health-200: #bbf7d0;
+  --color-health-300: #86efac;
+  --color-health-400: #4ade80;
+  --color-health-500: #22c55e;
+  --color-health-600: #16a34a;
+  --color-health-700: #15803d;
+  --color-health-800: #166534;
+  --color-health-900: #14532d;
+
+  /* Legacy primary (compatibilidad con clases existentes) */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-heading: "Poppins", "Inter", sans-serif;
+
+  --background-image-pharmacy-gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #22c55e 100%);
+
+  --shadow-pharmacy: 0 10px 40px -10px rgb(30 64 175 / 0.3);
+  --shadow-health: 0 10px 40px -10px rgb(34 197 94 / 0.3);
+}
