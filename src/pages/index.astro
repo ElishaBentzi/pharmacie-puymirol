@@ -9,7 +9,6 @@ const slides = [
     img: '/images/2024/04/lapsa-450.jpg',
     alt: 'Alimentation Lapsa pour chiens et chats',
     title: 'Alimentation Chien et Chat',
-    titleColor: 'text-ink-700 dark:text-ink-100',
     text: "Il est composé d’ingrédients de haute qualité, notamment de viande fraîche, de grains entiers et de graisses saines. Il est disponible dans une variété de formules pour répondre aux besoins de différents chiens et chats. Fabriqué en France.",
     button: { label: 'Video', href: 'https://youtu.be/xToPayF1HYo', external: true },
   },
@@ -17,7 +16,6 @@ const slides = [
     img: '/images/2024/04/fachada-vieja-450.jpg',
     alt: 'La bastide de Puymirol, siège de la pharmacie',
     title: 'À votre service depuis 1945',
-    titleColor: 'text-coral-500',
     text: 'Pharmacie Puymirol',
     button: null,
   },
@@ -25,7 +23,6 @@ const slides = [
     img: '/images/2024/04/medadom-450.jpeg',
     alt: 'Cabine de téléconsultation Medadom',
     title: 'Téléconsultation',
-    titleColor: 'text-ink-700 dark:text-ink-100',
     text: "La pharmacie Puymirol offre la possibilité de téléconsultations avec des médecins via la plateforme Medadom. Medadom vous met en relation avec des médecins généralistes et spécialistes en temps réel, sans avoir à attendre les rendez-vous traditionnels.",
     button: { label: 'Téléconsultation', href: '/teleconsultation', external: false },
   },
@@ -33,11 +30,13 @@ const slides = [
     img: '/images/2024/04/nutritionist-450.jpg',
     alt: 'Diététicienne en consultation',
     title: 'Diététicienne',
-    titleColor: 'text-ink-700 dark:text-ink-100',
     text: "Une bonne nutrition est essentielle. Que Votre Nourriture Soit Votre Première Médecine. Dans votre pharmacie Puymirol, vous pourrez consulter une diététicienne.",
     button: { label: 'Diététicienne', href: 'https://docs.google.com/forms/d/e/1FAIpQLSdqkPKzKco8RVY3OzAx', external: true },
   },
 ];
+
+// Carrusel circular: 3 copias de los slides; el bloque real es la copia central
+const carouselCards = [...slides, ...slides, ...slides];
 
 const checks = [
   // orden de llenado por filas (2 columnas) igual que el original
@@ -104,33 +103,32 @@ const services = [
     <div class="absolute inset-0 bg-[url('/images/2024/04/Puymirol-map-bn-1350x650-1.jpg')] bg-cover bg-center opacity-60 dark:opacity-20" aria-hidden="true"></div>
     <div class="container-site relative py-8 lg:py-12">
       <div class="relative">
-        <div
-          id="hero-track"
-          class="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {slides.map((s) => (
-            <article class="w-full flex-shrink-0 snap-start px-1 lg:w-[calc(50%-12px)]">
-              <img src={s.img} alt={s.alt} width="450" height="450" loading="eager" class="w-full aspect-square object-cover" />
-              <h5 class:list={['mt-5 text-3xl font-bold lg:text-[36px] lg:leading-tight', s.titleColor]}>{s.title}</h5>
-              <p class="mt-3 text-[15px] leading-relaxed text-ink-600 dark:text-ink-300 lg:text-base">{s.text}</p>
-              {s.button && (
-                <a
-                  href={s.button.href}
-                  class="mt-5 inline-block rounded-[4px] bg-link px-7 py-3 text-[15px] font-medium text-white transition-colors hover:bg-petrol-500"
-                  {...(s.button.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                >
-                  {s.button.label}
-                </a>
-              )}
-            </article>
-          ))}
+        <div class="-mx-3 overflow-hidden">
+          <div id="hero-track" class="flex will-change-transform">
+            {carouselCards.map((s) => (
+              <article class="w-full flex-shrink-0 px-3 lg:w-1/2">
+                <img src={s.img} alt={s.alt} width="450" height="450" loading="eager" class="w-full aspect-square object-cover" />
+                <h5 class="mt-5 text-3xl font-bold text-coral-500 lg:text-[36px] lg:leading-tight">{s.title}</h5>
+                <p class="mt-3 text-[15px] leading-relaxed text-ink-600 dark:text-ink-300 lg:text-base">{s.text}</p>
+                {s.button && (
+                  <a
+                    href={s.button.href}
+                    class="mt-5 inline-block rounded-[4px] bg-link px-7 py-3 text-[15px] font-medium text-white transition-colors hover:bg-petrol-500"
+                    {...(s.button.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {s.button.label}
+                  </a>
+                )}
+              </article>
+            ))}
+          </div>
         </div>
 
         <!-- Flechas -->
-        <button id="hero-prev" class="absolute -left-3 top-[22%] flex h-10 w-10 items-center justify-center rounded-full bg-link/85 text-white transition-colors hover:bg-link" aria-label="Diapositive précédente">
+        <button id="hero-prev" class="absolute -left-3 top-[22%] z-10 flex h-10 w-10 items-center justify-center rounded-full bg-link/85 text-white transition-colors hover:bg-link" aria-label="Diapositive précédente">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m15 6-6 6 6 6"/></svg>
         </button>
-        <button id="hero-next" class="absolute -right-3 top-[22%] flex h-10 w-10 items-center justify-center rounded-full bg-link/85 text-white transition-colors hover:bg-link" aria-label="Diapositive suivante">
+        <button id="hero-next" class="absolute -right-3 top-[22%] z-10 flex h-10 w-10 items-center justify-center rounded-full bg-link/85 text-white transition-colors hover:bg-link" aria-label="Diapositive suivante">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></svg>
         </button>
       </div>
@@ -258,31 +256,64 @@ const services = [
 </BasePage>
 
 <script>
-  // Carrusel hero: flechas, puntos y contador
+  // Carrusel circular: 3 copias de los slides, índice siempre normalizado a la copia central.
   const track = document.getElementById('hero-track')!;
   const dots = [...document.querySelectorAll<HTMLButtonElement>('.hero-dot')];
   const current = document.getElementById('hero-current')!;
-  const count = dots.length;
+  const COUNT = dots.length;      // 4 slides reales
+  let index = COUNT;              // la copia central empieza en COUNT
+  let step = 0;
+  let animating = false;
 
   const perView = () => (window.innerWidth >= 1024 ? 2 : 1);
-  const maxIndex = () => Math.max(0, count - perView());
-  let index = 0;
+  const mod = (n: number) => ((n % COUNT) + COUNT) % COUNT;
 
-  const cardWidth = () => (track.firstElementChild as HTMLElement).getBoundingClientRect().width + 24;
-
-  function goTo(i: number) {
-    index = Math.max(0, Math.min(i, maxIndex()));
-    track.scrollTo({ left: index * cardWidth(), behavior: 'smooth' });
-    current.textContent = String(index + 1);
+  function measure() {
+    step = track.clientWidth / perView();
+  }
+  function apply(withAnim: boolean) {
+    track.style.transition = withAnim ? 'transform 450ms ease' : 'none';
+    track.style.transform = `translateX(${-index * step}px)`;
+  }
+  function updateHud() {
+    current.textContent = String(mod(index) + 1);
     dots.forEach((d, di) => {
-      const active = di === index;
-      d.classList.toggle('bg-[#61ce70]', active);
-      d.classList.toggle('bg-ink-300', !active);
+      d.classList.toggle('bg-[#61ce70]', di === mod(index));
+      d.classList.toggle('bg-ink-300', di !== mod(index));
     });
+  }
+  function goTo(target: number) {
+    if (animating || target === index) return;
+    animating = true;
+    index = target;
+    apply(true);
+    // temporizador en vez de transitionend: robusto aunque el navegador
+    // salte o module la transicion (pestaña en segundo plano, reduced motion)
+    window.setTimeout(() => {
+      // normalizar al bloque central sin animación (loop infinito)
+      if (index >= COUNT * 2 || index < COUNT) {
+        index = mod(index) + COUNT;
+        apply(false);
+      }
+      updateHud();
+      animating = false;
+    }, 480);
   }
 
   document.getElementById('hero-prev')?.addEventListener('click', () => goTo(index - 1));
   document.getElementById('hero-next')?.addEventListener('click', () => goTo(index + 1));
-  dots.forEach((d) => d.addEventListener('click', () => goTo(Number(d.dataset.index))));
-  window.addEventListener('resize', () => goTo(index));
+  dots.forEach((d) =>
+    d.addEventListener('click', () => {
+      const delta = (Number(d.dataset.index) - mod(index) + COUNT) % COUNT;
+      if (delta) goTo(index + delta);
+    }),
+  );
+  window.addEventListener('resize', () => {
+    measure();
+    apply(false);
+  });
+
+  measure();
+  apply(false);
+  updateHud();
 </script>
