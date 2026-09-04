@@ -15,7 +15,7 @@ const { contact } = pharmacyData;
 
 <!-- Header mínimo (opción 1: logo + nav + CTA teléfono; los datos completos viven solo en el footer) -->
 <header class="sticky top-0 z-40 bg-white shadow-sm dark:bg-ink-800" role="banner">
-  <div class="container-site flex h-20 items-center justify-between gap-6">
+  <div class="mx-auto flex h-20 w-full max-w-[1280px] items-center justify-between gap-4 px-4">
     <a href="/" class="flex-shrink-0" aria-label={`${pharmacyData.name} - Retour à l'accueil`}>
       <img
         src="/images/logos/logo-menu.png"
@@ -37,7 +37,7 @@ const { contact } = pharmacyData;
               role="menuitem"
               aria-current={normalize(currentPath) === normalize(item.href) ? 'page' : undefined}
               class:list={[
-                'font-archivo text-[13px] font-light tracking-wide transition-colors duration-200',
+                'whitespace-nowrap font-archivo text-[13px] font-light tracking-wide transition-colors duration-200',
                 'text-ink-600 hover:text-teal-600 dark:text-ink-200 dark:hover:text-teal-300',
                 normalize(currentPath) === normalize(item.href) && 'text-teal-600 dark:text-teal-300 underline underline-offset-4',
               ]}
@@ -53,7 +53,7 @@ const { contact } = pharmacyData;
       <!-- Fax: número secundario, visible en pantallas anchas -->
       <a
         href={`tel:${contact.faxHref}`}
-        class="hidden items-center gap-1.5 text-[13px] text-ink-500 transition-colors hover:text-petrol-600 xl:flex dark:text-ink-300 dark:hover:text-teal-300"
+        class="hidden items-center gap-1.5 whitespace-nowrap text-[13px] text-ink-500 transition-colors hover:text-petrol-600 xl:flex dark:text-ink-300 dark:hover:text-teal-300"
         aria-label={`Fax de la pharmacie: ${contact.fax}`}
       >
         Fax {contact.fax}
@@ -61,7 +61,7 @@ const { contact } = pharmacyData;
       <!-- CTA teléfono -->
       <a
         href={`tel:${contact.phoneHref}`}
-        class="hidden items-center gap-2 bg-coral-500 px-5 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-coral-600 sm:flex"
+        class="hidden items-center gap-2 whitespace-nowrap bg-coral-500 px-4 py-2.5 text-[14px] font-medium text-white transition-colors hover:bg-coral-600 sm:flex"
         aria-label={`Appeler la pharmacie au ${contact.phone}`}
       >
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
