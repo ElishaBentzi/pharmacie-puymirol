@@ -11,80 +11,48 @@ const navItems = [
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const normalize = (href: string) => (href === '/' ? '/' : href.replace(/\/$/, ''));
 const { contact } = pharmacyData;
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacyData.contact.fullAddress)}`;
 ---
 
-<header class="site-header sticky top-0 z-40 bg-white shadow-sm dark:bg-ink-800" role="banner">
-  <div class="container-site">
-    <!-- Fila 1: logo + contacto (el contacto se colapsa al hacer scroll) -->
-    <div class="flex items-center justify-between gap-4 pt-4">
-      <a href="/" class="flex-shrink-0" aria-label={`${pharmacyData.name} - Retour à l'accueil`}>
-        <img
-          src="/images/logos/logo-menu.png"
-          alt="Pharmacie Puymirol"
-          width="200"
-          height="64"
-          class="header-logo h-14 w-auto object-contain lg:h-16"
-          loading="eager"
-          fetchpriority="high"
-        />
-      </a>
-
-      <!-- Contacto (desktop, siempre visible) -->
-      <div class="hidden lg:flex items-center gap-10">
-        <a
-          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacyData.contact.fullAddress)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-3 text-[13px] leading-snug text-ink-600 dark:text-ink-200 hover:text-petrol-600 dark:hover:text-teal-300"
-        >
-          <svg class="h-9 w-9 flex-shrink-0 text-petrol-600 dark:text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
-          <span>32 Rue Royale<br />47270 PUYMIROL</span>
-        </a>
-        <a href={`tel:${contact.phoneHref}`} class="flex items-center gap-3 text-[13px] leading-snug text-ink-600 dark:text-ink-200 hover:text-petrol-600 dark:hover:text-teal-300">
-          <svg class="h-9 w-9 flex-shrink-0 text-petrol-600 dark:text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
-          <span><strong class="font-bold">{contact.phone}</strong><br />Fax {contact.fax}</span>
-        </a>
-        <a href={`mailto:${contact.email}`} class="flex items-center gap-3 text-[13px] leading-snug text-ink-600 dark:text-ink-200 hover:text-petrol-600 dark:hover:text-teal-300 max-w-[180px]">
-          <svg class="h-9 w-9 flex-shrink-0 text-petrol-600 dark:text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="m22 7-10 6L2 7"/></svg>
-          <span class="break-all">{contact.email}</span>
-        </a>
-        <a href={contact.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-petrol-600 dark:text-teal-400 hover:text-teal-500">
-          <svg class="h-8 w-8" viewBox="0 0 320 512" fill="currentColor" aria-hidden="true"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
-        </a>
-      </div>
-
-      <!-- Botones móviles -->
-      <div class="flex items-center gap-2 lg:hidden">
-        <button
-          id="dark-toggle-mobile"
-          class="flex h-10 w-10 items-center justify-center text-ink-600 dark:text-teal-300"
-          aria-label="Basculer le mode sombre"
-        >
-          <svg class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
-          <svg class="hidden h-5 w-5 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
-        </button>
-        <button
-          id="menu-toggle"
-          class="flex h-11 w-11 items-center justify-center bg-link text-white"
-          aria-label="Ouvrir le menu"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-        >
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Fila 2: horarios -->
-    <div class="text-[12px] leading-relaxed text-ink-500 dark:text-ink-300">
-      <p class="lg:hidden">Lundi au Vendredi 8:45 à 12:30 · 14:00 à 19:30<br />Mercredi jusqu'à 19:00 · Samedis 9:00 à 12:00</p>
-      <p class="hidden lg:block pb-2">Lundi au Vendredi 8:45 à 12:30 · 14:00 à 19:30<br />Mercredi jusqu'à 19:00 · Samedis 9:00 à 12:00</p>
-    </div>
+<!-- Franja de contacto (NO sticky: desaparece al hacer scroll, opción 2) -->
+<div class="bg-petrol-600 text-white dark:bg-ink-900">
+  <div class="container-site flex h-9 flex-wrap items-center justify-center gap-x-6 gap-y-1 text-[12px] lg:justify-between">
+    <a
+      href={mapsHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center gap-1.5 hover:text-teal-200"
+    >
+      <svg class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      32 Rue Royale, 47270 PUYMIROL
+    </a>
+    <a href={`tel:${contact.phoneHref}`} class="flex items-center gap-1.5 font-medium hover:text-teal-200">
+      <svg class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+      {contact.phone}
+    </a>
+    <span class="hidden items-center gap-1.5 lg:flex">
+      <svg class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/></svg>
+      Lun–Ven 8:45–12:30 / 14:00–19:30 · Mercredi jusqu'à 19:00 · Sam 9:00–12:00
+    </span>
   </div>
+</div>
 
-  <!-- Fila 3: navegación (desktop) -->
-  <nav class="hidden lg:block border-t border-gray-100 dark:border-ink-700" aria-label="Navigation principale">
-    <div class="container-site flex items-center justify-end gap-8 h-11">
+<!-- Header sticky compacto (opción 2: logo + nav + CTA teléfono) -->
+<header class="sticky top-0 z-40 bg-white shadow-sm dark:bg-ink-800" role="banner">
+  <div class="container-site flex h-20 items-center justify-between gap-6">
+    <a href="/" class="flex-shrink-0" aria-label={`${pharmacyData.name} - Retour à l'accueil`}>
+      <img
+        src="/images/logos/logo-menu.png"
+        alt="Pharmacie Puymirol"
+        width="200"
+        height="64"
+        class="h-14 w-auto object-contain lg:h-16"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </a>
+
+    <nav class="hidden lg:block" aria-label="Navigation principale">
       <ul class="flex items-center gap-8" role="menubar">
         {navItems.map((item) => (
           <li role="none">
@@ -103,21 +71,57 @@ const { contact } = pharmacyData;
           </li>
         ))}
       </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <!-- CTA teléfono (siempre visible, sticky) -->
+      <a
+        href={`tel:${contact.phoneHref}`}
+        class="hidden items-center gap-2 bg-coral-500 px-5 py-2.5 text-[15px] font-medium text-white transition-colors hover:bg-coral-600 sm:flex"
+        aria-label={`Appeler la pharmacie au ${contact.phone}`}
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        {contact.phone}
+      </a>
+      <a
+        href={`tel:${contact.phoneHref}`}
+        class="flex h-11 w-11 items-center justify-center bg-coral-500 text-white sm:hidden"
+        aria-label={`Appeler la pharmacie au ${contact.phone}`}
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+      </a>
+      <button
+        id="dark-toggle-mobile"
+        class="flex h-10 w-10 items-center justify-center text-ink-600 lg:hidden dark:text-teal-300"
+        aria-label="Basculer le mode sombre"
+      >
+        <svg class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        <svg class="hidden h-5 w-5 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
+      </button>
       <button
         id="dark-toggle"
-        class="flex h-8 w-8 items-center justify-center text-ink-400 hover:text-teal-600 dark:text-ink-300 dark:hover:text-teal-300"
+        class="hidden h-9 w-9 items-center justify-center text-ink-400 hover:text-teal-600 lg:flex dark:text-ink-300 dark:hover:text-teal-300"
         aria-label="Basculer le mode sombre"
       >
         <svg class="h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
         <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
       </button>
+      <button
+        id="menu-toggle"
+        class="flex h-11 w-11 items-center justify-center bg-link text-white lg:hidden"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </div>
-  </nav>
+  </div>
 
   <!-- Menú móvil -->
   <nav
     id="mobile-menu"
-    class="hidden lg:hidden border-t border-gray-100 dark:border-ink-700 bg-white dark:bg-ink-800"
+    class="hidden border-t border-gray-100 bg-white lg:hidden dark:border-ink-700 dark:bg-ink-800"
     aria-label="Navigation mobile"
   >
     <ul class="container-site py-2" role="menubar">
