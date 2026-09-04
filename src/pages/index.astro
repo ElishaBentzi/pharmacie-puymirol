@@ -99,7 +99,7 @@ const services = [
 
 <BasePage title={title} description={description}>
   <!-- 1. Hero: carrusel 2 tarjetas sobre fondo mapa-watermark -->
-  <section class="relative overflow-hidden" aria-label="Actualités de la pharmacie">
+  <section id="hero-carousel" class="relative overflow-hidden" aria-label="Actualités de la pharmacie">
     <div class="absolute inset-0 bg-[url('/images/2024/04/Puymirol-map-bn-1350x650-1.jpg')] bg-cover bg-center opacity-60 dark:opacity-20" aria-hidden="true"></div>
     <div class="container-site relative py-8 lg:py-12">
       <div class="relative">
@@ -148,8 +148,8 @@ const services = [
     <div class="absolute inset-0 bg-[url('/images/2024/04/Materiel-Medical-1350x650-1.jpg')] bg-cover bg-center" aria-hidden="true"></div>
     <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
     <div class="container-site relative text-center" data-aos="fade-up">
-      <h2 class="mx-auto max-w-2xl text-3xl font-bold leading-tight text-white lg:text-4xl">Matériels et Prestations de santé à Domicile</h2>
-      <p class="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-white/95">
+      <h2 class="mx-auto max-w-3xl text-3xl font-bold leading-tight text-white lg:text-5xl">Matériels et Prestations de santé à Domicile</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-white/95 lg:text-base">
         Location Matériel Médical et Prestations de santé à domicile et en collectivités en partenariat avec les professionnels de santé, en particulier pour les personnes à mobilité réduite ou hospitalisées à domicile.
       </p>
       <a href="/materiel-medical" class="btn-coral btn-coral-hover mt-7">Matériel Médical</a>
@@ -160,8 +160,8 @@ const services = [
   <section class="bg-white py-16 dark:bg-ink-900 lg:py-20" aria-label="Pharmacie Puymirol à votre écoute">
     <div class="container-site grid items-center gap-12 lg:grid-cols-2">
       <div data-aos="fade-right">
-        <h2 class="text-3xl font-bold text-ink-800 dark:text-ink-100 lg:text-[32px]">Pharmacie Puymirol</h2>
-        <p class="mt-1 flex items-center gap-4 text-2xl font-bold text-coral-500">
+        <h2 class="text-3xl font-bold text-ink-800 dark:text-ink-100 lg:text-4xl">Pharmacie Puymirol</h2>
+        <p class="mt-1 flex items-center gap-4 text-2xl font-bold text-coral-500 lg:text-3xl">
           À votre écoute
           <span class="hidden h-px flex-1 bg-ink-200 dark:bg-ink-600 sm:block" aria-hidden="true"></span>
         </p>
@@ -196,8 +196,8 @@ const services = [
     <div class="absolute inset-0 bg-[url('/images/2024/04/contention-1350x650-1.jpg')] bg-cover bg-center" aria-hidden="true"></div>
     <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
     <div class="container-site relative text-center" data-aos="fade-up">
-      <h1 class="mx-auto max-w-3xl text-3xl font-bold leading-tight text-white lg:text-4xl">Chaussettes, bas et collants de contention</h1>
-      <p class="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-white/95">
+      <h1 class="mx-auto max-w-3xl text-3xl font-bold leading-tight text-white lg:text-5xl">Chaussettes, bas et collants de contention</h1>
+      <p class="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-white/95 lg:text-base">
         Consulter nos catalogues de contention. Solutions de contention textiles efficaces et innovantes qui agissent sur le bien-être et la santé des femmes et des hommes.
       </p>
       <a href="/orthopedie-et-contention" class="btn-coral btn-coral-hover mt-7">Orthopédie et Contention</a>
@@ -209,8 +209,8 @@ const services = [
     {banners.map((b) => {
       const inner = (
         <>
-          <div class={`absolute inset-0 bg-cover bg-center ${b.href ? '' : ''}`} style={`background-image:url('${b.img}')`} aria-hidden="true"></div>
-          <div class="absolute inset-0 bg-black/35 transition-colors hover:bg-black/45" aria-hidden="true"></div>
+          <div class={`absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105`} style={`background-image:url('${b.img}')`} aria-hidden="true"></div>
+          <div class="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/45" aria-hidden="true"></div>
           <div class="relative flex h-full flex-col items-center justify-center gap-3 px-8 py-20 text-center">
             <h3 class="text-xl font-bold text-white lg:text-[22px]">{b.title}</h3>
             <p class="max-w-xs text-[13px] leading-relaxed text-white/90">{b.text}</p>
@@ -218,9 +218,9 @@ const services = [
         </>
       );
       return b.href ? (
-        <a href={b.href} class="relative overflow-hidden" aria-label={b.title}>{inner}</a>
+        <a href={b.href} class="group relative block overflow-hidden" aria-label={b.title}>{inner}</a>
       ) : (
-        <div class="relative overflow-hidden">{inner}</div>
+        <div class="group relative overflow-hidden">{inner}</div>
       );
     })}
   </section>
@@ -231,9 +231,9 @@ const services = [
       <div class="order-2 flex justify-center lg:order-1 lg:justify-start" data-aos="fade-right">
         <img src="/images/2019/07/home-family-opt.png" alt="Famille suivie par la Pharmacie Puymirol - vaccination et calendrier de santé" width="800" height="800" loading="lazy" class="w-full max-w-[440px]" />
       </div>
-      <div class="order-1 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:order-2" data-aos="fade-left">
-        {services.map((s) => (
-          <article>
+      <div class="order-1 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:order-2">
+        {services.map((s, i) => (
+          <article class="transition-transform duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay={i * 100}>
             {s.icon === 'calendar' && (
               <svg class="mx-auto h-12 w-12 text-coral-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18" stroke-linecap="round"/><path d="M9.5 15.5h5M12 13v5" stroke-linecap="round"/></svg>
             )}
@@ -316,4 +316,22 @@ const services = [
   measure();
   apply(false);
   updateHud();
+
+  // Autoplay cada 6s: se pausa al hover/focus y respeta reduced motion
+  let autoTimer = 0;
+  const stopAuto = () => {
+    if (autoTimer) window.clearInterval(autoTimer);
+    autoTimer = 0;
+  };
+  const startAuto = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || autoTimer) return;
+    autoTimer = window.setInterval(() => goTo(index + 1), 6000);
+  };
+  const hero = document.getElementById('hero-carousel');
+  hero?.addEventListener('mouseenter', stopAuto);
+  hero?.addEventListener('mouseleave', startAuto);
+  hero?.addEventListener('focusin', stopAuto);
+  hero?.addEventListener('focusout', startAuto);
+  document.addEventListener('visibilitychange', () => (document.hidden ? stopAuto() : startAuto()));
+  startAuto();
 </script>

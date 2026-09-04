@@ -13,24 +13,24 @@ const normalize = (href: string) => (href === '/' ? '/' : href.replace(/\/$/, ''
 const { contact } = pharmacyData;
 ---
 
-<header class="bg-white dark:bg-ink-800" role="banner">
+<header class="site-header sticky top-0 z-40 bg-white shadow-sm dark:bg-ink-800" role="banner">
   <div class="container-site">
-    <!-- Fila 1: logo + contacto -->
-    <div class="flex items-center justify-between gap-4 py-4">
+    <!-- Fila 1: logo + contacto (el contacto se colapsa al hacer scroll) -->
+    <div class="flex items-center justify-between gap-4 pt-4">
       <a href="/" class="flex-shrink-0" aria-label={`${pharmacyData.name} - Retour à l'accueil`}>
         <img
           src="/images/logos/logo-menu.png"
           alt="Pharmacie Puymirol"
           width="200"
           height="64"
-          class="h-14 w-auto object-contain lg:h-16"
+          class="header-logo h-14 w-auto object-contain lg:h-16"
           loading="eager"
           fetchpriority="high"
         />
       </a>
 
-      <!-- Contacto (desktop) -->
-      <div class="hidden lg:flex items-center gap-10">
+      <!-- Contacto (desktop, colapsable) -->
+      <div class="header-extra hidden lg:flex items-center gap-10">
         <a
           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacyData.contact.fullAddress)}`}
           target="_blank"
@@ -75,15 +75,11 @@ const { contact } = pharmacyData;
       </div>
     </div>
 
-    <!-- Fila 2: horarios -->
-    <p class="text-[12px] leading-relaxed text-ink-500 dark:text-ink-300 lg:hidden">
-      Lundi au Vendredi 8:45 à 12:30 · 14:00 à 19:30<br />
-      Mercredi jusqu'à 19:00 · Samedis 9:00 à 12:00
-    </p>
-    <p class="hidden lg:block text-[12px] leading-relaxed text-ink-500 dark:text-ink-300 -mt-2 pb-1">
-      Lundi au Vendredi 8:45 à 12:30 · 14:00 à 19:30<br />
-      Mercredi jusqu'à 19:00 · Samedis 9:00 à 12:00
-    </p>
+    <!-- Fila 2: horarios (se colapsa al hacer scroll) -->
+    <div class="header-extra text-[12px] leading-relaxed text-ink-500 dark:text-ink-300">
+      <p class="lg:hidden">Lundi au Vendredi 8:45 à 12:30 · 14:00 à 19:30<br />Mercredi jusqu'à 19:00 · Samedis 9:00 à 12:00</p>
+      <p class="hidden lg:block -mt-2 pb-2">Lundi au Vendredi 8:45 à 12:30 · 14:00 à 19:30<br />Mercredi jusqu'à 19:00 · Samedis 9:00 à 12:00</p>
+    </div>
   </div>
 
   <!-- Fila 3: navegación (desktop) -->
@@ -159,4 +155,30 @@ const { contact } = pharmacyData;
       localStorage.setItem('theme', dark ? 'dark' : 'light');
     });
   }
+
+  // Header compacto al hacer scroll (v1 evolución: sticky + colapso)
+  const header = document.querySelector('.site-header');
+  const onScroll = () => header?.classList.toggle('header-compact', window.scrollY > 140);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>
+
+<style>
+  /* Colapso suave de contacto y horarios cuando el header queda pegado */
+  .header-extra {
+    max-height: 220px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+  }
+  .site-header.header-compact .header-extra {
+    max-height: 0;
+    opacity: 0;
+  }
+  .header-logo {
+    transition: height 0.3s ease;
+  }
+  .site-header.header-compact .header-logo {
+    height: 2.75rem;
+  }
+</style>
