@@ -1,0 +1,57 @@
+---
+import { pharmacyData } from '../data/store';
+---
+
+<!-- Stream de Facebook con carga en dos clics: nada se carga hasta que el
+     usuario lo pide (GDPR-friendly, evita cookies de terceros por defecto) -->
+<section class="bg-white py-14 dark:bg-ink-900 lg:py-16" aria-label="Facebook">
+  <div class="container-site text-center" data-aos="fade-up">
+    <h2 class="text-3xl font-bold text-ink-700 dark:text-ink-100 lg:text-4xl">
+      Suivez-nous sur <span class="text-[#1877F2]">Facebook</span>
+    </h2>
+    <p class="mt-2 text-[14px] text-ink-600 dark:text-ink-300">
+      Actualités, horaires spéciaux et conseils de santé sur notre page Facebook.
+    </p>
+
+    <div id="fb-stream" class="mx-auto mt-8 max-w-[500px]" data-fb-href={pharmacyData.contact.facebook}>
+      <button
+        id="fb-load"
+        class="group mx-auto flex w-full flex-col items-center gap-3 border border-gray-200 bg-[#f0f2f5] px-8 py-10 transition-colors hover:border-[#1877F2]/50 dark:border-ink-700 dark:bg-ink-800"
+      >
+        <svg class="h-12 w-12 text-[#1877F2] transition-transform duration-300 group-hover:scale-110" viewBox="0 0 320 512" fill="currentColor" aria-hidden="true"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+        <span class="font-medium text-ink-700 dark:text-ink-100">Charger le flux Facebook</span>
+        <span class="text-[12px] text-ink-500 dark:text-ink-300">Aucune donnée n'est transmise à Facebook avant votre clic.</span>
+      </button>
+      <a
+        href={pharmacyData.contact.facebook}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-3 inline-block text-[13px] text-link hover:underline"
+      >
+        Ou ouvrir la page Facebook dans un nouvel onglet
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const holder = document.getElementById('fb-stream');
+  const btn = document.getElementById('fb-load');
+  btn?.addEventListener('click', () => {
+    const href = holder?.getAttribute('data-fb-href');
+    if (!href || !holder) return;
+    const src = `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(href)}&tabs=timeline&width=500&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`;
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = 'Flux Facebook de la Pharmacie Puymirol';
+    iframe.width = '500';
+    iframe.height = '620';
+    iframe.style.border = 'none';
+    iframe.style.overflow = 'hidden';
+    iframe.className = 'w-full';
+    iframe.setAttribute('scrolling', 'no');
+    iframe.setAttribute('allowfullscreen', 'true');
+    iframe.setAttribute('allow', 'encrypted-media');
+    holder.replaceChildren(iframe);
+  });
+</script>
