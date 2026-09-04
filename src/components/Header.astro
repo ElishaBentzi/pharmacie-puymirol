@@ -11,11 +11,36 @@ const navItems = [
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const normalize = (href: string) => (href === '/' ? '/' : href.replace(/\/$/, ''));
 const { contact } = pharmacyData;
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(pharmacyData.contact.fullAddress)}`;
 ---
 
-<!-- Header mínimo (opción 1: logo + nav + CTA teléfono; los datos completos viven solo en el footer) -->
+<!-- Franja de contacto (NO sticky: desaparece al hacer scroll, opción 2) -->
+<div class="bg-petrol-600 text-white dark:bg-ink-900">
+  <div class="container-site flex h-9 flex-wrap items-center justify-center gap-x-6 gap-y-1 text-[12px] lg:justify-between">
+    <a
+      href={mapsHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex items-center gap-1.5 hover:text-teal-200"
+    >
+      <svg class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+      32 Rue Royale, 47270 PUYMIROL
+    </a>
+    <a href={`tel:${contact.phoneHref}`} class="flex items-center gap-1.5 font-medium hover:text-teal-200">
+      <svg class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+      {contact.phone}
+      <span class="font-normal opacity-85">· Fax {contact.fax}</span>
+    </a>
+    <span class="hidden items-center gap-1.5 lg:flex">
+      <svg class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/></svg>
+      Lun–Ven 8:45–12:30 / 14:00–19:30 · Mercredi jusqu'à 19:00 · Sam 9:00–12:00
+    </span>
+  </div>
+</div>
+
+<!-- Header sticky compacto (opción 2: logo + nav + CTA teléfono) -->
 <header class="sticky top-0 z-40 bg-white shadow-sm dark:bg-ink-800" role="banner">
-  <div class="mx-auto flex h-20 w-full max-w-[1280px] items-center justify-between gap-4 px-4">
+  <div class="container-site flex h-20 items-center justify-between gap-6">
     <a href="/" class="flex-shrink-0" aria-label={`${pharmacyData.name} - Retour à l'accueil`}>
       <img
         src="/images/logos/logo-menu.png"
@@ -37,7 +62,7 @@ const { contact } = pharmacyData;
               role="menuitem"
               aria-current={normalize(currentPath) === normalize(item.href) ? 'page' : undefined}
               class:list={[
-                'whitespace-nowrap font-archivo text-[13px] font-light tracking-wide transition-colors duration-200',
+                'font-archivo text-[13px] font-light tracking-wide transition-colors duration-200',
                 'text-ink-600 hover:text-teal-600 dark:text-ink-200 dark:hover:text-teal-300',
                 normalize(currentPath) === normalize(item.href) && 'text-teal-600 dark:text-teal-300 underline underline-offset-4',
               ]}
@@ -50,30 +75,6 @@ const { contact } = pharmacyData;
     </nav>
 
     <div class="flex items-center gap-2">
-      <!-- Fax: número secundario, visible en pantallas anchas -->
-      <a
-        href={`tel:${contact.faxHref}`}
-        class="hidden items-center gap-1.5 whitespace-nowrap text-[13px] text-ink-500 transition-colors hover:text-petrol-600 xl:flex dark:text-ink-300 dark:hover:text-teal-300"
-        aria-label={`Fax de la pharmacie: ${contact.fax}`}
-      >
-        Fax {contact.fax}
-      </a>
-      <!-- CTA teléfono -->
-      <a
-        href={`tel:${contact.phoneHref}`}
-        class="hidden items-center gap-2 whitespace-nowrap bg-coral-500 px-4 py-2.5 text-[14px] font-medium text-white transition-colors hover:bg-coral-600 sm:flex"
-        aria-label={`Appeler la pharmacie au ${contact.phone}`}
-      >
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
-        {contact.phone}
-      </a>
-      <a
-        href={`tel:${contact.phoneHref}`}
-        class="flex h-11 w-11 items-center justify-center bg-coral-500 text-white sm:hidden"
-        aria-label={`Appeler la pharmacie au ${contact.phone}`}
-      >
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
-      </a>
       <!-- Facebook (junto al toggle de tema) -->
       <a
         href={contact.facebook}
@@ -88,7 +89,7 @@ const { contact } = pharmacyData;
         href={contact.facebook}
         target="_blank"
         rel="noopener noreferrer"
-        class="hidden h-9 w-9 items-center justify-center text-petrol-600 transition-colors hover:text-[#1877F2] lg:flex dark:text-teal-300 dark:hover:text-teal-200"
+        class="hidden h-9 w-9 items-center justify-center text-petrol-600 transition-colors hover:text-[#1877F2] sm:flex dark:text-teal-300 dark:hover:text-teal-200"
         aria-label="Facebook de la pharmacie"
       >
         <svg class="h-5 w-5" viewBox="0 0 320 512" fill="currentColor" aria-hidden="true"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
