@@ -205,25 +205,42 @@ const services = [
     </div>
   </section>
 
-  <!-- 5. Tres banners -->
-  <section class="grid grid-cols-1 md:grid-cols-3" aria-label="Nos univers">
-    {banners.map((b) => {
-      const inner = (
-        <>
-          <div class={`absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105`} style={`background-image:url('${b.img}')`} aria-hidden="true"></div>
-          <div class="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/45" aria-hidden="true"></div>
-          <div class="relative flex h-full flex-col items-center justify-center gap-3 px-8 py-20 text-center">
-            <h3 class="text-xl font-bold text-white lg:text-[22px]">{b.title}</h3>
-            <p class="max-w-xs text-[13px] leading-relaxed text-white/90">{b.text}</p>
-          </div>
-        </>
-      );
-      return b.href ? (
-        <a href={b.href} class="group relative block overflow-hidden" aria-label={b.title}>{inner}</a>
-      ) : (
-        <div class="group relative overflow-hidden">{inner}</div>
-      );
-    })}
+  <!-- 5. Tres banners (efecto "Sarah" del original: imagen desplazable, línea
+       naranja que se desliza bajo el título y texto revelado en hover;
+       en móvil el texto y la línea se ven fijos) -->
+  <section class="bg-white p-2.5 dark:bg-ink-900" aria-label="Nos univers">
+    <div class="grid grid-cols-1 gap-2.5 md:grid-cols-3">
+      {banners.map((b) => {
+        const inner = (
+          <>
+            <img
+              src={b.img}
+              alt=""
+              loading="lazy"
+              class="absolute inset-y-0 left-0 h-full w-[calc(100%+20px)] max-w-none object-cover transition-transform duration-300 lg:group-hover:-translate-x-2.5"
+            />
+            <div class="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/45" aria-hidden="true"></div>
+            <div class="relative flex h-full flex-col items-center justify-center px-8 py-20 text-center">
+              <h3 class="relative overflow-hidden pb-2 text-xl font-bold text-white lg:text-[22px]">
+                {b.title}
+                <span
+                  class="absolute bottom-0 left-0 h-[3px] w-full bg-coral-500 transition-transform duration-300 lg:translate-x-[-100%] lg:group-hover:translate-x-0"
+                  aria-hidden="true"
+                ></span>
+              </h3>
+              <p class="max-w-xs pt-1 text-[13px] leading-relaxed text-white/90 transition-all duration-300 lg:translate-y-6 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
+                {b.text}
+              </p>
+            </div>
+          </>
+        );
+        return b.href ? (
+          <a href={b.href} class="group relative block min-h-[300px] overflow-hidden lg:min-h-[440px]" aria-label={b.title}>{inner}</a>
+        ) : (
+          <div class="group relative min-h-[300px] overflow-hidden lg:min-h-[440px]">{inner}</div>
+        );
+      })}
+    </div>
   </section>
 
   <!-- 6. Servicios -->
