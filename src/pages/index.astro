@@ -146,7 +146,7 @@ const services = [
 
   <!-- 2. Banda: Matériels et Prestations -->
   <section class="relative overflow-hidden py-20 lg:py-28" aria-label="Matériel médical à domicile">
-    <div class="absolute inset-0 bg-[url('/images/2024/04/Materiel-Medical-1350x650-1.jpg')] bg-cover bg-center" aria-hidden="true"></div>
+    <div data-parallax class="absolute inset-x-0 -top-1/4 h-[150%] bg-[url('/images/2024/04/Materiel-Medical-1350x650-1.jpg')] bg-cover bg-center will-change-transform" aria-hidden="true"></div>
     <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
     <div class="container-site relative text-center" data-aos="fade-up">
       <h2 class="mx-auto max-w-3xl text-3xl font-bold leading-tight text-white lg:text-5xl">Matériels et Prestations de santé à Domicile</h2>
@@ -194,7 +194,7 @@ const services = [
 
   <!-- 4. Banda: Contention -->
   <section class="relative overflow-hidden py-20 lg:py-28" aria-label="Orthopédie et contention">
-    <div class="absolute inset-0 bg-[url('/images/2024/04/contention-1350x650-1.jpg')] bg-cover bg-center" aria-hidden="true"></div>
+    <div data-parallax class="absolute inset-x-0 -top-1/4 h-[150%] bg-[url('/images/2024/04/contention-1350x650-1.jpg')] bg-cover bg-center will-change-transform" aria-hidden="true"></div>
     <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
     <div class="container-site relative text-center" data-aos="fade-up">
       <h1 class="mx-auto max-w-3xl text-3xl font-bold leading-tight text-white lg:text-5xl">Chaussettes, bas et collants de contention</h1>
@@ -343,4 +343,31 @@ const services = [
   hero?.addEventListener('focusout', startAuto);
   document.addEventListener('visibilitychange', () => (document.hidden ? stopAuto() : startAuto()));
   startAuto();
+
+  // Parallax suave de las bandas con foto (transform acelerado por GPU;
+  // a diferencia de background-attachment:fixed, funciona tambien en iOS).
+  const parallaxEls = [...document.querySelectorAll<HTMLElement>('[data-parallax]')];
+  if (parallaxEls.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const SPEED = 0.12; // el fondo se desplaza al 12% de la velocidad del scroll
+    let ticking = false;
+    const updateParallax = () => {
+      ticking = false;
+      const vh = window.innerHeight;
+      for (const el of parallaxEls) {
+        const r = (el.parentElement as HTMLElement).getBoundingClientRect();
+        if (r.bottom < -80 || r.top > vh + 80) continue; // fuera de pantalla
+        const offset = (r.top + r.height / 2 - vh / 2) * SPEED;
+        el.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
+      }
+    };
+    const onScrollP = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateParallax);
+      }
+    };
+    window.addEventListener('scroll', onScrollP, { passive: true });
+    window.addEventListener('resize', onScrollP, { passive: true });
+    updateParallax();
+  }
 </script>
