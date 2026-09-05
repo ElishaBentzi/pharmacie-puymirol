@@ -40,9 +40,9 @@ import { pharmacyData } from '../data/store';
   btn?.addEventListener('click', () => {
     const href = holder?.getAttribute('data-fb-href');
     if (!href || !holder) return;
-    const src = `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(href)}&tabs=timeline&width=500&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`;
+
     const iframe = document.createElement('iframe');
-    iframe.src = src;
+    iframe.src = `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(href)}&tabs=timeline&width=500&height=620&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`;
     iframe.title = 'Flux Facebook de la Pharmacie Puymirol';
     iframe.width = '500';
     iframe.height = '620';
@@ -52,6 +52,39 @@ import { pharmacyData } from '../data/store';
     iframe.setAttribute('scrolling', 'no');
     iframe.setAttribute('allowfullscreen', 'true');
     iframe.setAttribute('allow', 'encrypted-media');
-    holder.replaceChildren(iframe);
+
+    const loading = document.createElement('p');
+    loading.className = 'py-10 text-[13px] text-ink-500 dark:text-white/50';
+    loading.textContent = 'Chargement du flux Facebook…';
+
+    holder.replaceChildren(iframe, loading);
+
+    // Navegadores con bloqueo de terceros (Brave Shields, etc.) impiden que el
+    // iframe cargue: si a los 5s no hay señal de carga, mostramos el respaldo.
+    let loaded = false;
+    iframe.addEventListener('load', () => {
+      loaded = true;
+      // el iframe dispara load incluso con error; si a los 2s del load sigue
+      // sin dimensionar contenido visible no podemos detectarlo, así que solo
+      // retiramos el mensaje
+      loading.remove();
+    });
+    window.setTimeout(() => {
+      if (loaded) return;
+      const fallback = document.createElement('div');
+      fallback.className = 'border border-gray-200 bg-[#f0f2f5] px-8 py-10 text-center dark:border-ink-700 dark:bg-ink-800';
+      fallback.innerHTML = `
+        <p class="font-medium text-ink-700 dark:text-ink-100">Le flux Facebook ne peut pas s'afficher ici.</p>
+        <p class="mt-1 text-[12px] text-ink-500 dark:text-ink-300">Votre navigateur bloque le contenu Facebook (Brave et certains bloqueurs de trackers le font).</p>
+        <a
+          href="${href}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 inline-block bg-[#1877F2] px-5 py-2.5 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
+        >
+          Ouvrir notre page Facebook
+        </a>`;
+      holder.replaceChildren(fallback);
+    }, 5000);
   });
 </script>
