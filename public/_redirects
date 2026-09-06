@@ -24,7 +24,3 @@
 # Common WordPress paths
 /wp-content/uploads/*    /images/:splat    301
 
-# Cutover: dominio principal .com — el .fr (y www) redirigen 301
-https://www.pharmacie-puymirol.com/*    https://pharmacie-puymirol.com/:splat    301
-https://pharmacie-puymirol.fr/*    https://pharmacie-puymirol.com/:splat    301
-https://www.pharmacie-puymirol.fr/*    https://pharmacie-puymirol.com/:splat    301
