@@ -43,5 +43,5 @@ export const pharmacyData = {
     "Casteljaloux", "Saint-Urcisse", "Saint-Romain-le-Noble", "Saint-Caprais-de-Lerm"
   ],
 
-  siteUrl: "https://pharmacie-puymirol.fr"
+  siteUrl: "https://pharmacie-puymirol.com"
 };
