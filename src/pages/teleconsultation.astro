@@ -34,6 +34,38 @@ const zones = [
   "47270 Saint-Urcisse, Sainte-Croix, France",
   "47270 Saint-Caprais-de-Lerm, Malbés, France",
 ];
+
+// FAQPage: respuestas derivadas del contenido existente de la página
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment se déroule une téléconsultation en pharmacie ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Venez à la pharmacie et demandez une téléconsultation : notre personnel vous aide à entrer en contact avec un médecin via un appareil spécial. Vous expliquez votre problème, recevez un diagnostic et un traitement personnalisés, et le médecin peut vous prescrire des médicaments ou vous donner des instructions pour vos soins."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels sont les avantages de la téléconsultation en pharmacie ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un accès immédiat aux soins médicaux sans déplacement, des soins sans rendez-vous pendant les heures d'ouverture de la pharmacie, une variété de spécialistes disponibles sur place et un service personnalisé de qualité."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelles communes sont couvertes par le service ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le service couvre notamment Puymirol, Lafox, Tayrac, Grayssas, Perville, Casteljaloux, Saint-Urcisse, Saint-Romain-le-Noble et Saint-Caprais-de-Lerm."
+      }
+    }
+  ]
+};
 ---
 
 <BasePage title={title} description={description}>
@@ -95,4 +127,33 @@ const zones = [
       </div>
     </div>
   </section>
+
+  <!-- FAQ (contenu dérivé de la page; schema FAQPage pour Google) -->
+  <section class="bg-gray-50 py-12 dark:bg-ink-800 lg:py-16" aria-label="Questions fréquentes">
+    <div class="container-site max-w-4xl">
+      <h2 class="text-center text-2xl font-bold text-ink-700 dark:text-ink-100 lg:text-3xl">Questions fréquentes</h2>
+      <div class="mt-8 space-y-6 text-[14px] leading-relaxed text-ink-600 dark:text-ink-300">
+        <div>
+          <h3 class="text-[15px] font-bold text-ink-700 dark:text-ink-100">Comment se déroule une téléconsultation en pharmacie ?</h3>
+          <p class="mt-2">
+            Venez à la pharmacie et demandez une téléconsultation : notre personnel vous aide à entrer en contact avec un médecin via un appareil spécial. Vous expliquez votre problème, recevez un diagnostic et un traitement personnalisés, et le médecin peut vous prescrire des médicaments ou vous donner des instructions pour vos soins.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-[15px] font-bold text-ink-700 dark:text-ink-100">Quels sont les avantages de la téléconsultation en pharmacie ?</h3>
+          <p class="mt-2">
+            Un accès immédiat aux soins médicaux sans déplacement, des soins sans rendez-vous pendant les heures d'ouverture de la pharmacie, une variété de spécialistes disponibles sur place et un service personnalisé de qualité.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-[15px] font-bold text-ink-700 dark:text-ink-100">Quelles communes sont couvertes par le service ?</h3>
+          <p class="mt-2">
+            Le service couvre notamment Puymirol, Lafox, Tayrac, Grayssas, Perville, Casteljaloux, Saint-Urcisse, Saint-Romain-le-Noble et Saint-Caprais-de-Lerm.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BasePage>
